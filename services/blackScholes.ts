@@ -1,8 +1,7 @@
-
 import { BlackScholesParams, BlackScholesResults, Greeks } from '../types';
 
 // Standard normal cumulative distribution function (CDF) using the error function
-const standardNormalCdf = (x: number): number => {
+export const standardNormalCdf = (x: number): number => {
   return 0.5 * (1 + erf(x / Math.sqrt(2)));
 };
 
@@ -26,11 +25,11 @@ const erf = (x: number): number => {
 
 
 // Standard normal probability density function (PDF)
-const standardNormalPdf = (x: number): number => {
+export const standardNormalPdf = (x: number): number => {
   return Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
 };
 
-const calculateD1D2 = (params: BlackScholesParams): { d1: number, d2: number } => {
+export const calculateD1D2 = (params: BlackScholesParams): { d1: number, d2: number } => {
   const { stockPrice, strikePrice, timeToMaturity, volatility, riskFreeRate } = params;
   
   if (volatility <= 0 || timeToMaturity <= 0) {

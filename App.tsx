@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { calculateBlackScholes, calculateGreeks } from './services/blackScholes';
 import { BlackScholesParams, BlackScholesResults, Greeks, ChartData, SensitivityVariable } from './types';
@@ -79,13 +78,19 @@ const App: React.FC = () => {
           </p>
         </header>
 
+        <div className="text-center mb-8 text-sm text-gray-400 bg-gray-800/50 border border-gray-700 p-4 rounded-2xl">
+          <p>
+            <span className="font-semibold text-cyan-400">Pro Tip:</span> Hover or click on the tiles under <strong>Calculated Values</strong> and hover over the info icons on <strong>Model Parameters</strong> to learn more.
+          </p>
+        </div>
+
         <main className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1 space-y-8">
             <Controls params={params} setParams={setParams} />
           </div>
 
           <div className="lg:col-span-2 space-y-8">
-            <Results results={results} greeks={greeks} />
+            <Results results={results} greeks={greeks} params={params} />
             <div className="bg-gray-800/50 p-6 rounded-2xl shadow-lg backdrop-blur-sm border border-gray-700">
               <h3 className="text-2xl font-semibold text-white mb-4">Sensitivity Visualization</h3>
                <div className="mb-4">

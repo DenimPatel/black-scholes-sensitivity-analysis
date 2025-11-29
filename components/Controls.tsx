@@ -1,5 +1,5 @@
-
 import React from 'react';
+import InfoIcon from './InfoIcon';
 import { BlackScholesParams } from '../types';
 
 interface ControlsProps {
@@ -14,14 +14,15 @@ interface SliderConfig {
     max: number;
     step: number;
     format: (value: number) => string;
+    description: string;
 }
 
 const controlConfig: SliderConfig[] = [
-    { id: 'stockPrice', label: 'Stock Price (S)', min: 1, max: 1000, step: 0.1, format: (v) => `$${v.toFixed(2)}` },
-    { id: 'strikePrice', label: 'Strike Price (K)', min: 1, max: 1000, step: 0.1, format: (v) => `$${v.toFixed(2)}` },
-    { id: 'timeToMaturity', label: 'Time to Maturity (T)', min: 0.01, max: 2, step: 0.01, format: (v) => `${(v * 365).toFixed(0)} days` },
-    { id: 'volatility', label: 'Volatility (σ)', min: 0.01, max: 1, step: 0.01, format: (v) => `${(v * 100).toFixed(1)}%` },
-    { id: 'riskFreeRate', label: 'Risk-Free Rate (r)', min: 0.00, max: 0.15, step: 0.001, format: (v) => `${(v * 100).toFixed(1)}%` },
+    { id: 'stockPrice', label: 'Stock Price (S)', min: 1, max: 1000, step: 0.1, format: (v) => `$${v.toFixed(2)}`, description: 'The current market price of the underlying asset (e.g., stock).' },
+    { id: 'strikePrice', label: 'Strike Price (K)', min: 1, max: 1000, step: 0.1, format: (v) => `$${v.toFixed(2)}`, description: 'The price at which the option holder can buy (for a call) or sell (for a put) the underlying asset.' },
+    { id: 'timeToMaturity', label: 'Time to Maturity (T)', min: 0.01, max: 2, step: 0.01, format: (v) => `${(v * 365).toFixed(0)} days`, description: 'The time remaining until the option expires, expressed in years.' },
+    { id: 'volatility', label: 'Volatility (σ)', min: 0.01, max: 1, step: 0.01, format: (v) => `${(v * 100).toFixed(1)}%`, description: 'A measure of how much the asset price is expected to fluctuate, expressed as an annualized standard deviation.' },
+    { id: 'riskFreeRate', label: 'Risk-Free Rate (r)', min: 0.00, max: 0.15, step: 0.001, format: (v) => `${(v * 100).toFixed(1)}%`, description: 'The theoretical rate of return of an investment with zero risk, typically the interest rate on government bonds.' },
 ]
 
 const Controls: React.FC<ControlsProps> = ({ params, setParams }) => {
@@ -40,7 +41,10 @@ const Controls: React.FC<ControlsProps> = ({ params, setParams }) => {
         {controlConfig.map(config => (
              <div key={config.id}>
                 <label htmlFor={config.id} className="flex justify-between items-center text-sm font-medium text-gray-300 mb-1">
-                    <span>{config.label}</span>
+                    <span className="flex items-center">
+                        {config.label}
+                        <InfoIcon description={config.description} />
+                    </span>
                     <span className="text-cyan-400 font-semibold">{config.format(params[config.id])}</span>
                 </label>
                 <input

@@ -1,17 +1,36 @@
-
 import React from 'react';
+import Equation from './Equation';
 
 interface InfoCardProps {
   title: string;
   value: string | number;
   description: string;
+  calculation?: string;
+  isExpanded?: boolean;
+  onClick?: () => void;
 }
 
-const InfoCard: React.FC<InfoCardProps> = ({ title, value, description }) => {
+const InfoCard: React.FC<InfoCardProps> = ({ title, value, description, calculation, isExpanded, onClick }) => {
   return (
-    <div className="bg-gray-700/50 p-4 rounded-lg group relative border border-gray-600 hover:border-cyan-500 transition-colors">
-      <h4 className="text-sm text-gray-400 font-medium truncate">{title}</h4>
-      <p className="text-xl font-semibold text-white mt-1">{value}</p>
+    <div
+      className={`bg-gray-700/50 p-4 rounded-lg group relative border border-gray-600 hover:border-cyan-500 transition-all duration-300 cursor-pointer ${isExpanded ? 'lg:col-span-2' : ''}`}
+      onClick={onClick}
+    >
+      <div className="flex justify-between items-start">
+        <div>
+          <h4 className="text-sm text-gray-400 font-medium truncate">{title}</h4>
+          <p className="text-xl font-semibold text-white mt-1">{value}</p>
+        </div>
+      </div>
+
+      {isExpanded && calculation && (
+        <div className="mt-4 pt-4 border-t border-gray-600">
+          <h5 className="text-sm font-semibold text-cyan-400 mb-2">Calculation Details</h5>
+          <Equation className="text-xs text-gray-300 whitespace-pre-wrap font-mono leading-relaxed">{calculation}</Equation>
+        </div>
+      )}
+
+      {/* Tooltip */}
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs p-2 bg-gray-900 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 shadow-lg">
         {description}
         <svg className="absolute text-gray-900 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255">
