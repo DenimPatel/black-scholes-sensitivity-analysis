@@ -1,0 +1,6 @@
+
+{
+  "name": "Black-Scholes Sensitivity Analysis",
+  "description": "An interactive dashboard to perform sensitivity analysis on stock options using the Black-Scholes model. Adjust key variables like stock price, volatility, and time to maturity to see real-time updates on option prices and their corresponding 'Greeks'. The app visualizes these sensitivities through interactive charts.",
+  "requestFramePermissions": []
+}
