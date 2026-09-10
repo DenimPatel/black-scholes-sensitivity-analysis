@@ -48,7 +48,7 @@ const PutCallParityChart: React.FC = () => {
       footer={
         <p>
           The two lines overlap so tightly that they look like one — the largest gap across the whole sweep is{' '}
-          <span className="text-cyan-300 font-mono">{maxResidual.toExponential(2)}</span>, i.e. rounding error. The
+          <span className="text-[var(--color-accent-700)] font-mono">{maxResidual.toExponential(2)}</span>, i.e. rounding error. The
           identity is not an approximation Black-Scholes happens to satisfy: it is an arbitrage fact that holds for{' '}
           <em>any</em> model, since a call plus discounted strike cash is a portfolio that behaves exactly like a put
           plus one share of the stock at expiry.
@@ -70,20 +70,20 @@ const PutCallParityChart: React.FC = () => {
       <div className="h-80 w-full">
         <ResponsiveContainer>
           <LineChart data={data} margin={{ top: 10, right: 20, bottom: 20, left: 10 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#37415188" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#44414188" />
             <XAxis
               dataKey="x"
               type="number"
               domain={[min, max]}
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={formatX}
-              stroke="#4B5563"
-              label={{ value: isS ? 'Stock price S' : 'Risk-free rate r', position: 'insideBottom', dy: 8, fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: isS ? 'Stock price S' : 'Risk-free rate r', position: 'insideBottom', dy: 8, fill: '#605D5D' }}
             />
             <YAxis
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => `$${v.toFixed(1)}`}
-              stroke="#4B5563"
+              stroke="#D7D3D3"
               domain={['auto', 'auto']}
             />
             <Tooltip
@@ -93,20 +93,20 @@ const PutCallParityChart: React.FC = () => {
                 const rhs = payload.find((p) => p.dataKey === 'rhs')?.value as number | undefined;
                 if (lhs === undefined || rhs === undefined) return null;
                 return (
-                  <div className="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs shadow-xl space-y-1">
-                    <p className="text-gray-400">{isS ? `S = $${Number(label).toFixed(2)}` : `r = ${(Number(label) * 100).toFixed(2)}%`}</p>
-                    <p className="text-teal-300">C − P: ${lhs.toFixed(4)}</p>
+                  <div className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs shadow-xl space-y-1">
+                    <p className="text-slate-400">{isS ? `S = $${Number(label).toFixed(2)}` : `r = ${(Number(label) * 100).toFixed(2)}%`}</p>
+                    <p className="text-[var(--color-accent-700)]">C − P: ${lhs.toFixed(4)}</p>
                     <p className="text-amber-300">S − K·e^(−rT): ${rhs.toFixed(4)}</p>
-                    <p className="text-gray-400">difference: {(lhs - rhs).toExponential(1)}</p>
+                    <p className="text-slate-400">difference: {(lhs - rhs).toExponential(1)}</p>
                   </div>
                 );
               }}
             />
-            <Line dataKey="lhs" name="C − P" stroke="#2DD4BF" strokeWidth={2} dot={false} isAnimationActive={false} />
+            <Line dataKey="lhs" name="C − P" stroke="#006786" strokeWidth={2} dot={false} isAnimationActive={false} />
             <Line
               dataKey="rhs"
               name="S − K·e^(−rT)"
-              stroke="#FBBF24"
+              stroke="#C8963A"
               strokeWidth={2}
               strokeDasharray="6 4"
               dot={false}

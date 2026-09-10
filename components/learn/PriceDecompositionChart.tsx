@@ -69,8 +69,8 @@ const PriceDecompositionChart: React.FC = () => {
       title="Anatomy of an option price"
       footer={
         <p>
-          The option price splits into <span className="text-white">intrinsic value</span> (what it's worth if it
-          settled right now) and <span className="text-white">time value</span> (what the market charges for the
+          The option price splits into <span className="text-slate-900 font-semibold">intrinsic value</span> (what it's worth if it
+          settled right now) and <span className="text-slate-900 font-semibold">time value</span> (what the market charges for the
           chance that it gets better before expiry). Time value is the option's "fuel": it is largest at the strike
           and burns out at expiry.
         </p>
@@ -79,21 +79,21 @@ const PriceDecompositionChart: React.FC = () => {
       <div className="h-96 w-full">
         <ResponsiveContainer>
           <ComposedChart data={data} margin={{ top: 10, right: 20, bottom: 20, left: 10 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#37415188" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#44414188" />
             <XAxis
               dataKey="s"
               type="number"
               domain={[atSpot.min, atSpot.max]}
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => `$${v.toFixed(0)}`}
-              stroke="#4B5563"
-              label={{ value: 'Stock price S', position: 'insideBottom', dy: 8, fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: 'Stock price S', position: 'insideBottom', dy: 8, fill: '#605D5D' }}
             />
             <YAxis
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => `$${v.toFixed(0)}`}
-              stroke="#4B5563"
-              label={{ value: 'Option price ($)', angle: -90, position: 'insideLeft', fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: 'Option price ($)', angle: -90, position: 'insideLeft', fill: '#605D5D' }}
             />
             <Tooltip
               content={({ active, payload, label }) => {
@@ -103,10 +103,10 @@ const PriceDecompositionChart: React.FC = () => {
                 const putTot = (payload.find((p) => p.dataKey === 'putIntrinsic')?.value as number) +
                   (payload.find((p) => p.dataKey === 'putTimeValue')?.value as number);
                 return (
-                  <div className="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs shadow-xl space-y-1">
-                    <p className="text-gray-400">S = <span className="text-white">${Number(label).toFixed(2)}</span></p>
-                    <p className="text-teal-300">Call: ${callTot.toFixed(2)} (intrinsic ${(payload.find((p) => p.dataKey === 'callIntrinsic')?.value as number).toFixed(2)})</p>
-                    <p className="text-pink-300">Put: ${putTot.toFixed(2)} (intrinsic ${(payload.find((p) => p.dataKey === 'putIntrinsic')?.value as number).toFixed(2)})</p>
+                  <div className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs shadow-xl space-y-1">
+                    <p className="text-slate-400">S = <span className="text-white">${Number(label).toFixed(2)}</span></p>
+                    <p className="text-[var(--color-accent-700)]">Call: ${callTot.toFixed(2)} (intrinsic ${(payload.find((p) => p.dataKey === 'callIntrinsic')?.value as number).toFixed(2)})</p>
+                    <p className="text-[var(--color-accent-2-600)]">Put: ${putTot.toFixed(2)} (intrinsic ${(payload.find((p) => p.dataKey === 'putIntrinsic')?.value as number).toFixed(2)})</p>
                     <p className="text-amber-300">No-arbitrage call floor: ${(payload.find((p) => p.dataKey === 'callBound')?.value as number).toFixed(2)}</p>
                   </div>
                 );
@@ -117,10 +117,10 @@ const PriceDecompositionChart: React.FC = () => {
               type="monotone"
               dataKey="callIntrinsic"
               name="Call — intrinsic"
-              stroke="#2DD4BF"
+              stroke="#006786"
               strokeWidth={1.5}
               stackId="call"
-              fill="#2DD4BF"
+              fill="#006786"
               fillOpacity={0.55}
               isAnimationActive={false}
             />
@@ -128,10 +128,10 @@ const PriceDecompositionChart: React.FC = () => {
               type="monotone"
               dataKey="callTimeValue"
               name="Call — time value"
-              stroke="#99F6E4"
+              stroke="#99E0FF"
               strokeWidth={1}
               stackId="call"
-              fill="#2DD4BF"
+              fill="#006786"
               fillOpacity={0.25}
               isAnimationActive={false}
             />
@@ -139,10 +139,10 @@ const PriceDecompositionChart: React.FC = () => {
               type="monotone"
               dataKey="putIntrinsic"
               name="Put — intrinsic"
-              stroke="#F472B6"
+              stroke="#D6006C"
               strokeWidth={1.5}
               stackId="put"
-              fill="#F472B6"
+              fill="#D6006C"
               fillOpacity={0.55}
               isAnimationActive={false}
             />
@@ -150,10 +150,10 @@ const PriceDecompositionChart: React.FC = () => {
               type="monotone"
               dataKey="putTimeValue"
               name="Put — time value"
-              stroke="#FBCFE8"
+              stroke="#FFC0D0"
               strokeWidth={1}
               stackId="put"
-              fill="#F472B6"
+              fill="#D6006C"
               fillOpacity={0.25}
               isAnimationActive={false}
             />
@@ -161,7 +161,7 @@ const PriceDecompositionChart: React.FC = () => {
               type="monotone"
               dataKey="callBound"
               name="No-arbitrage call floor"
-              stroke="#FBBF24"
+              stroke="#C8963A"
               strokeWidth={1.5}
               strokeDasharray="5 4"
               dot={false}
@@ -172,10 +172,10 @@ const PriceDecompositionChart: React.FC = () => {
                 x={S0}
                 y={atSpot.callPrice}
                 r={5}
-                fill="#2DD4BF"
-                stroke="#111827"
+                fill="#006786"
+                stroke="#201E1D"
                 strokeWidth={2}
-                label={{ value: 'Current', position: 'top', fill: '#99F6E4', fontSize: 11 }}
+                label={{ value: 'Current', position: 'top', fill: '#99E0FF', fontSize: 11 }}
               />
             )}
           </ComposedChart>

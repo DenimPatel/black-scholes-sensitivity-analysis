@@ -35,17 +35,19 @@ const Controls: React.FC<ControlsProps> = ({ params, setParams }) => {
   };
 
   return (
-    <div className="bg-gray-800/50 p-6 rounded-2xl shadow-lg backdrop-blur-sm border border-gray-700">
-      <h3 className="text-2xl font-semibold text-white mb-6">Model Parameters</h3>
+    <div className="glass-card p-6">
+      <h3 className="text-2xl font-semibold mb-6">Model Parameters</h3>
       <div className="space-y-6">
         {controlConfig.map(config => (
              <div key={config.id}>
-                <label htmlFor={config.id} className="flex justify-between items-center text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor={config.id} className="flex justify-between items-center text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
                     <span className="flex items-center">
                         {config.label}
                         <InfoIcon description={config.description} />
                     </span>
-                    <span className="text-cyan-400 font-semibold">{config.format(params[config.id])}</span>
+                    <span className="glass-chip px-2 py-0.5">
+                      <span className="font-mono font-semibold text-[12px] text-slate-800 normal-case tracking-normal">{config.format(params[config.id])}</span>
+                    </span>
                 </label>
                 <input
                     id={config.id}
@@ -56,7 +58,7 @@ const Controls: React.FC<ControlsProps> = ({ params, setParams }) => {
                     step={config.step}
                     value={params[config.id]}
                     onChange={handleChange}
-                    className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                    className="glass-slider w-full"
                 />
             </div>
         ))}

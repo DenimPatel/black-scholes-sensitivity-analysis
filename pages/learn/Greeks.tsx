@@ -69,7 +69,7 @@ const Greeks: React.FC = () => {
       <Prose>
         <Lead>
           The price is a scalar, but it is sensitive to five inputs in seven different ways. The{' '}
-          <span className="text-white font-semibold">Greeks</span> are the partial derivatives of the price with
+          <span className="text-slate-900 font-semibold">Greeks</span> are the partial derivatives of the price with
           respect to each input{' '}
           <InlineMath>{'\\Delta = \\frac{\\partial C}{\\partial S}'}</InlineMath>,{' '}
           <InlineMath>{'\\nu = \\partial C / \\partial \\sigma'}</InlineMath>,{' '}
@@ -83,7 +83,7 @@ const Greeks: React.FC = () => {
         <WhatYouSee>
           <p>
             The grid below sweeps one input across a range while holding the other four at your slider values. Each
-            tile plots a Greek against that sweep; the <span className="text-gray-200">white dot</span> marks your
+            tile plots a Greek against that sweep; the <span className="text-slate-700">white dot</span> marks your
             current position on the curve, and the number in each tile's corner is the Greek's value at your inputs.
             Switch the sweep variable to see the same seven Greeks against a different axis.
           </p>
@@ -97,20 +97,20 @@ const Greeks: React.FC = () => {
             and <InlineMath>{'N(d_2) = \\mathbb{Q}(S_T > K)'}</InlineMath>. Delta is not an arbitrary sensitivity — it
             is the probability mass of the hedge-ratio distribution, and it is exactly the number of shares you need
             to short to make a long call locally immune to stock moves. That is the whole delta-hedging game:{' '}
-            <span className="text-white">own one call, short Δ shares, and the portfolio barely flinches when S moves.</span>
+            <span className="text-slate-900">own one call, short Δ shares, and the portfolio barely flinches when S moves.</span>
           </p>
         </Callout>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">The quick-reference table</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">The quick-reference table</h2>
           <p>
             Same information as the grid, in the three numbers a desk quotes: unit, sign, and where the Greek
             concentrates. The fourth column is what traders actually use it for.
           </p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border border-gray-700 rounded-xl overflow-hidden">
+          <div className="overflow-x-auto glass-card">
+            <table className="w-full text-sm overflow-hidden">
               <thead>
-                <tr className="bg-gray-800 text-gray-400 text-left">
+                <tr className="bg-slate-100 text-slate-600 text-left">
                   <th className="px-4 py-2.5 font-medium">Greek</th>
                   <th className="px-4 py-2.5 font-medium">Unit</th>
                   <th className="px-4 py-2.5 font-medium">Sign</th>
@@ -118,14 +118,14 @@ const Greeks: React.FC = () => {
                   <th className="px-4 py-2.5 font-medium">What it hedges</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-700/70">
+              <tbody className="divide-y divide-slate-200">
                 {reference.map((r) => (
-                  <tr key={r.greek} className="bg-gray-800/30 align-top">
-                    <td className="px-4 py-3 font-semibold text-white whitespace-nowrap">{r.greek}</td>
-                    <td className="px-4 py-3 text-gray-400">{r.unit}</td>
-                    <td className="px-4 py-3 text-gray-400">{r.sign}</td>
-                    <td className="px-4 py-3 text-gray-400">{r.peak}</td>
-                    <td className="px-4 py-3 text-gray-400 leading-6">{r.hedge}</td>
+                  <tr key={r.greek} className="align-top">
+                    <td className="px-4 py-3 font-semibold text-slate-900 whitespace-nowrap">{r.greek}</td>
+                    <td className="px-4 py-3 text-slate-400">{r.unit}</td>
+                    <td className="px-4 py-3 text-slate-400">{r.sign}</td>
+                    <td className="px-4 py-3 text-slate-400">{r.peak}</td>
+                    <td className="px-4 py-3 text-slate-400 leading-6">{r.hedge}</td>
                   </tr>
                 ))}
               </tbody>
@@ -135,26 +135,26 @@ const Greeks: React.FC = () => {
 
         <Callout kind="watch">
           <p>
-            Three signs trip people up. <span className="text-white font-semibold">Vega</span> is strictly positive
+            Three signs trip people up. <span className="text-slate-900 font-semibold">Vega</span> is strictly positive
             for plain European options — more doubt never reduces the value of a right.{' '}
-            <span className="text-white font-semibold">Theta</span> is usually negative (you lose money as the clock
+            <span className="text-slate-900 font-semibold">Theta</span> is usually negative (you lose money as the clock
             runs) but a deep in-the-money put's theta can flip positive, because the discounted strike{' '}
-            <InlineMath>{'K e^{-rT}'}</InlineMath> <em>grows</em> as T increases. And <span className="text-white font-semibold">
+            <InlineMath>{'K e^{-rT}'}</InlineMath> <em>grows</em> as T increases. And <span className="text-slate-900 font-semibold">
             rho</span> is a rounding error for short-dated, out-of-the-money options — the deepest and longest are
             where rates actually move prices.
           </p>
         </Callout>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">The identity that checks everything: put-call parity</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">The identity that checks everything: put-call parity</h2>
           <p>
             Before you trade any of this, there is a free consistency check built into the model:
           </p>
-          <div className="bg-gray-900/60 border border-gray-700 rounded-xl p-4 text-sm text-gray-300 leading-7 space-y-2">
+          <div className="glass-card p-4 text-sm text-slate-600 leading-7 space-y-2">
             <p>
               <InlineMath>{'C - P = S - K e^{-rT}'}</InlineMath>
             </p>
-            <p className="text-gray-400">
+            <p className="text-slate-400">
               A call with strike K, minus a put with the same strike, is worth exactly one share of the stock less the
               present value of the strike. It is <em>not</em> a Black-Scholes coincidence — replicating the payoffs
               proves it under any model. Black-Scholes must satisfy it to machine precision, so the chart below is a
@@ -167,7 +167,7 @@ const Greeks: React.FC = () => {
 
         <Callout kind="try">
           <p>
-            Set <span className="text-white font-semibold">S exactly equal to K</span>, then wobble volatility and
+            Set <span className="text-slate-900 font-semibold">S exactly equal to K</span>, then wobble volatility and
             time. The call and put prices move together (both bell-shaped in σ), yet their difference stays glued to
             the parity line — two independently-priced instruments cannot drift apart. That one residual being zero
             is the model proving itself to you.

@@ -51,7 +51,7 @@ const TimeDecayChart: React.FC = () => {
       footer={
         <p>
           An option is only worth its payoff <em>at</em> expiry. The value you pay today must melt away as expiry
-          approaches — that melt is <span className="text-white">theta</span>. Watch the curve: it is flat far from
+          approaches — that melt is <span className="text-slate-900">theta</span>. Watch the curve: it is flat far from
           expiry and bends sharply as it nears the short end. That knee is where time decay hurts (or helps) most.
         </p>
       }
@@ -59,21 +59,21 @@ const TimeDecayChart: React.FC = () => {
       <div className="h-96 w-full">
         <ResponsiveContainer>
           <LineChart data={data} margin={{ top: 10, right: 20, bottom: 25, left: 10 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#37415188" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#44414188" />
             <XAxis
               dataKey="t"
               type="number"
               domain={[min, max]}
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => formatYears(v)}
-              stroke="#4B5563"
-              label={{ value: 'Time to maturity T', position: 'insideBottom', dy: 10, fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: 'Time to maturity T', position: 'insideBottom', dy: 10, fill: '#605D5D' }}
             />
             <YAxis
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => `$${v.toFixed(1)}`}
-              stroke="#4B5563"
-              label={{ value: 'Option price ($)', angle: -90, position: 'insideLeft', fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: 'Option price ($)', angle: -90, position: 'insideLeft', fill: '#605D5D' }}
             />
             <Tooltip
               content={({ active, payload, label }) => {
@@ -81,30 +81,30 @@ const TimeDecayChart: React.FC = () => {
                 const call = payload.find((p) => p.dataKey === 'call')?.value as number | undefined;
                 const put = payload.find((p) => p.dataKey === 'put')?.value as number | undefined;
                 return (
-                  <div className="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs shadow-xl space-y-1">
-                    <p className="text-gray-400">T = {formatYears(Number(label))}</p>
-                    <p className="text-teal-300">Call: ${call?.toFixed(2)}</p>
-                    <p className="text-pink-300">Put: ${put?.toFixed(2)}</p>
+                  <div className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs shadow-xl space-y-1">
+                    <p className="text-slate-400">T = {formatYears(Number(label))}</p>
+                    <p className="text-[var(--color-accent-700)]">Call: ${call?.toFixed(2)}</p>
+                    <p className="text-[var(--color-accent-2-600)]">Put: ${put?.toFixed(2)}</p>
                   </div>
                 );
               }}
             />
             <ReferenceLine
               x={T0}
-              stroke="#FBBF24"
+              stroke="#C8963A"
               strokeDasharray="4 4"
-              label={{ value: 'Current T', position: 'insideTopLeft', angle: 90, fill: '#FBBF24', fontSize: 11 }}
+              label={{ value: 'Current T', position: 'insideTopLeft', angle: 90, fill: '#C8963A', fontSize: 11 }}
             />
-            <Line dataKey="call" name="Call price" stroke="#2DD4BF" strokeWidth={2} dot={false} isAnimationActive={false} />
-            <Line dataKey="put" name="Put price" stroke="#F472B6" strokeWidth={2} dot={false} isAnimationActive={false} />
+            <Line dataKey="call" name="Call price" stroke="#006786" strokeWidth={2} dot={false} isAnimationActive={false} />
+            <Line dataKey="put" name="Put price" stroke="#D6006C" strokeWidth={2} dot={false} isAnimationActive={false} />
             <ReferenceDot
               x={atCurrent.t}
               y={atCurrent.call}
               r={5}
-              fill="#2DD4BF"
-              stroke="#111827"
+              fill="#006786"
+              stroke="#201E1D"
               strokeWidth={2}
-              label={{ value: 'You are here', position: 'top', fill: '#99F6E4', fontSize: 11 }}
+              label={{ value: 'You are here', position: 'top', fill: '#99E0FF', fontSize: 11 }}
             />
           </LineChart>
         </ResponsiveContainer>

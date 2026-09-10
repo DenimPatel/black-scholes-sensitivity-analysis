@@ -24,7 +24,7 @@ const Payoff: React.FC = () => {
       <Prose>
         <Lead>
           Everything an option does in its lifetime converges to a single moment: expiry. At that moment the contract
-          settles into its <span className="text-white font-semibold">payoff</span> — a plain, piecewise-linear
+          settles into its <span className="text-slate-900 font-semibold">payoff</span> — a plain, piecewise-linear
           function of where the stock has landed. Pricing an option is, at bottom, assigning a value <em>today</em> to
           a random payoff <em>tomorrow</em>.
         </Lead>
@@ -33,7 +33,7 @@ const Payoff: React.FC = () => {
           <p>
             The chart shows your profit or loss at expiry, <em>after</em> the premium, for the position you pick. The
             vertical purple line is the strike K; the blue line is where the stock stands today; the yellow dot is the{' '}
-            <span className="text-amber-300">breakeven</span> — the single stock price at which you end up exactly
+            <span className="text-amber-600">breakeven</span> — the single stock price at which you end up exactly
             whole.
           </p>
         </WhatYouSee>
@@ -42,7 +42,7 @@ const Payoff: React.FC = () => {
 
         <Callout kind="try">
           <p>
-            Flip to <span className="text-white font-semibold">short call</span> and watch the tail: the premium you
+            Flip to <span className="text-slate-900 font-semibold">short call</span> and watch the tail: the premium you
             collect is the entire roof of your profit, and the loss on the right has no floor. That asymmetry — small
             certain gain, unbounded tail risk — is exactly why the market pays a rich price for calls, and exactly why
             shorting them is how firms blow up.
@@ -50,28 +50,28 @@ const Payoff: React.FC = () => {
         </Callout>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">All four positions, on one page</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">All four positions, on one page</h2>
           <p>
             Every traded position is one of these four (or a combination of them). <InlineMath>S_T</InlineMath> is the
             stock at expiry; <InlineMath>C</InlineMath> and <InlineMath>P</InlineMath> are the call and put premiums.
           </p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border border-gray-700 rounded-xl overflow-hidden">
+          <div className="overflow-x-auto glass-card">
+            <table className="w-full text-sm overflow-hidden">
               <thead>
-                <tr className="bg-gray-800 text-gray-400 text-left">
+                <tr className="bg-slate-100 text-slate-600 text-left">
                   <th className="px-4 py-2.5 font-medium">Position</th>
                   <th className="px-4 py-2.5 font-medium">Payoff at expiry</th>
                   <th className="px-4 py-2.5 font-medium">The intuition</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-700/70">
+              <tbody className="divide-y divide-slate-200">
                 {positions.map((p) => (
-                  <tr key={p.pos} className="bg-gray-800/30 align-top">
-                    <td className="px-4 py-3 font-semibold text-white whitespace-nowrap">{p.pos}</td>
+                  <tr key={p.pos} className="align-top">
+                    <td className="px-4 py-3 font-semibold text-slate-900 whitespace-nowrap">{p.pos}</td>
                     <td className="px-4 py-3">
                       <InlineMath>{p.formula}</InlineMath>
                     </td>
-                    <td className="px-4 py-3 text-gray-400 leading-6">{p.when}</td>
+                    <td className="px-4 py-3 text-slate-400 leading-6">{p.when}</td>
                   </tr>
                 ))}
               </tbody>
@@ -80,7 +80,7 @@ const Payoff: React.FC = () => {
         </div>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">Why the curve has that shape</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">Why the curve has that shape</h2>
           <p>
             The <InlineMath>\max</InlineMath> in every row is doing all the work. For a call, if the stock dies below{' '}
             <InlineMath>K</InlineMath>, exercising is pointless — walking away costs less than buying high — so the
@@ -97,7 +97,7 @@ const Payoff: React.FC = () => {
 
         <Callout kind="idea">
           <p>
-            At expiry, an option is worth exactly its <span className="text-white">intrinsic value</span>:{' '}
+            At expiry, an option is worth exactly its <span className="text-slate-900">intrinsic value</span>:{' '}
             <InlineMath>{'\\max(S_T - K, 0)'}</InlineMath> for a call. But today the premium is usually{' '}
             <em>greater</em> than today's intrinsic value. Where does that excess come from, and what principle forces
             its exact size? That is the question the next three steps answer.

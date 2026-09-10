@@ -1,8 +1,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useModelParams } from '../../state/ParamsContext';
-import Controls from '../Controls';
 
 interface PageRef {
   to: string;
@@ -20,59 +18,39 @@ interface LearnPageProps {
 }
 
 const LearnPage: React.FC<LearnPageProps> = ({ step, totalSteps = 8, title, tagline, children, prev, next }) => {
-  const { params, setParams } = useModelParams();
-
   return (
     <div>
       <div className="mb-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-cyan-400 mb-2">
+        <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent-700)] mb-2">
           Step {step} of {totalSteps}
         </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{title}</h1>
-        <p className="text-lg text-gray-400">{tagline}</p>
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">{title}</h1>
+        <p className="text-lg text-slate-500">{tagline}</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-        <aside className="lg:col-span-1 lg:sticky lg:top-20">
-          <Controls params={params} setParams={setParams} />
-          <p className="text-xs text-gray-500 mt-3 px-1 leading-5">
-            These sliders drive every chart on this page.{' '}
-            <Link to="/" className="text-cyan-400 hover:underline">
-              Open the dashboard →
-            </Link>
-          </p>
-        </aside>
-
-        <div className="lg:col-span-3 space-y-8 min-w-0">{children}</div>
-      </div>
+      <div className="space-y-8 min-w-0">{children}</div>
 
       <nav className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
         {prev ? (
-          <Link
-            to={prev.to}
-            className="group bg-gray-800/50 border border-gray-700 hover:border-cyan-500 rounded-xl p-4 transition-colors"
-          >
-            <p className="text-xs text-gray-500 mb-1">← Previous</p>
-            <p className="text-sm font-semibold text-gray-200 group-hover:text-cyan-300">{prev.label}</p>
+          <Link to={prev.to} className="group glass-card glass-card-hover p-4">
+            <p className="text-xs text-slate-500 mb-1">← Previous</p>
+            <p className="text-sm font-semibold text-slate-800 group-hover:text-[var(--color-accent-700)]">{prev.label}</p>
           </Link>
         ) : (
           <span />
         )}
         {next ? (
-          <Link
-            to={next.to}
-            className="group bg-gray-800/50 border border-gray-700 hover:border-cyan-500 rounded-xl p-4 text-right transition-colors"
-          >
-            <p className="text-xs text-gray-500 mb-1">Next →</p>
-            <p className="text-sm font-semibold text-gray-200 group-hover:text-cyan-300">{next.label}</p>
+          <Link to={next.to} className="group glass-card glass-card-hover p-4 text-right">
+            <p className="text-xs text-slate-500 mb-1">Next →</p>
+            <p className="text-sm font-semibold text-slate-800 group-hover:text-[var(--color-accent-700)]">{next.label}</p>
           </Link>
         ) : (
           <Link
             to="/"
-            className="group bg-gray-800/50 border border-cyan-700/50 rounded-xl p-4 text-right transition-colors hover:border-cyan-500"
+            className="group glass-card glass-card-hover p-4 text-right border-[color-mix(in_srgb,var(--color-accent)_50%,transparent)]"
           >
-            <p className="text-xs text-gray-500 mb-1">Finish</p>
-            <p className="text-sm font-semibold text-cyan-300">Back to the dashboard</p>
+            <p className="text-xs text-slate-500 mb-1">Finish</p>
+            <p className="text-sm font-semibold text-[var(--color-accent-700)]">Back to the dashboard</p>
           </Link>
         )}
       </nav>

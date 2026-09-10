@@ -38,12 +38,12 @@ const statItems = [
 const StatList: React.FC = () => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
     {statItems.map((s) => (
-      <div key={s.sym} className="bg-gray-800/50 border border-gray-700 rounded-xl p-4">
+      <div key={s.sym} className="glass-card p-4">
         <div className="flex items-baseline gap-3 mb-1.5">
-          <span className="text-2xl font-mono text-cyan-300">{s.sym}</span>
-          <h3 className="text-sm font-semibold text-white">{s.name}</h3>
+          <span className="text-2xl font-mono text-[var(--color-accent-700)]">{s.sym}</span>
+          <h3 className="text-sm font-semibold text-slate-900">{s.name}</h3>
         </div>
-        <p className="text-sm text-gray-400 leading-6">{s.def}</p>
+        <p className="text-sm text-slate-400 leading-6">{s.def}</p>
       </div>
     ))}
   </div>
@@ -72,22 +72,22 @@ const Intro: React.FC = () => {
     >
       <Prose>
         <Lead>
-          A <span className="text-white font-semibold">stock option</span> is a contract that gives its owner the{' '}
-          <span className="text-teal-300">right, but not the obligation</span>, to buy or sell a fixed number of shares
+          A <span className="text-slate-900 font-semibold">stock option</span> is a contract that gives its owner the{' '}
+          <span className="text-[var(--color-accent-700)]">right, but not the obligation</span>, to buy or sell a fixed number of shares
           of a stock at a fixed price, up to a fixed date. That single sentence contains everything the Black–Scholes
           formula is trying to price.
         </Lead>
 
         <p>
-          There are two kinds. A <span className="text-teal-300 font-semibold">call</span> gives you the right to{' '}
-          <em>buy</em> the stock at the strike; a <span className="text-pink-300 font-semibold">put</span> gives you
+          There are two kinds. A <span className="text-[var(--color-accent-700)] font-semibold">call</span> gives you the right to{' '}
+          <em>buy</em> the stock at the strike; a <span className="text-[var(--color-accent-2-600)] font-semibold">put</span> gives you
           the right to <em>sell</em> it there. And there are two sides to every trade: the buyer (long) pays a premium
           for the privilege and holds the right; the seller (short) receives the premium and must deliver if the buyer
           exercises.
         </p>
 
         <p>
-          Every option on this site is <span className="text-white font-semibold">European</span>: it can only be
+          Every option on this site is <span className="text-slate-900 font-semibold">European</span>: it can only be
           exercised <em>on</em> the expiration date. American options can be exercised any time before, which makes
           them harder to price (Step 8 covers this). Black and Scholes priced the European case in 1973, and their
           formula is still the backbone of how markets talk about options.
@@ -104,9 +104,9 @@ const Intro: React.FC = () => {
         </Callout>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">In the money, at the money, out of the money</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">In the money, at the money, out of the money</h2>
           <p>
-            <span className="text-cyan-300 font-semibold">{moneynessExample}</span> Moneyness is just the sign of{' '}
+            <span className="text-[var(--color-accent-700)] font-semibold">{moneynessExample}</span> Moneyness is just the sign of{' '}
             <InlineMath>
               {'S - K'}
             </InlineMath>
@@ -117,12 +117,12 @@ const Intro: React.FC = () => {
         </div>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">The five inputs, in plain words</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">The five inputs, in plain words</h2>
           <StatList />
         </div>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">Your option, priced right now</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">Your option, priced right now</h2>
           <StatRow
             stats={[
               { label: 'Stock price S', value: `$${S.toFixed(2)}`, hint: 'Where the stock trades today' },
@@ -143,31 +143,31 @@ const Intro: React.FC = () => {
         </Callout>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">How to read this site</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">How to read this site</h2>
           <ul className="list-disc pl-5 space-y-1.5">
             <li>
-              <Link to="/learn/payoff" className="text-cyan-400 hover:underline">Step 2</Link> — what you actually win or lose at expiry (the payoff).
+              <Link to="/learn/payoff" className="text-[var(--color-accent)] hover:underline">Step 2</Link> — what you actually win or lose at expiry (the payoff).
             </li>
             <li>
-              <Link to="/learn/distribution" className="text-cyan-400 hover:underline">Step 3</Link> — the probability world the formula assumes, and where N(d₁) and N(d₂) come from.
+              <Link to="/learn/distribution" className="text-[var(--color-accent)] hover:underline">Step 3</Link> — the probability world the formula assumes, and where N(d₁) and N(d₂) come from.
             </li>
             <li>
-              <Link to="/learn/price-structure" className="text-cyan-400 hover:underline">Step 4</Link> — intrinsic vs time value, and how each input shifts the price.
+              <Link to="/learn/price-structure" className="text-[var(--color-accent)] hover:underline">Step 4</Link> — intrinsic vs time value, and how each input shifts the price.
             </li>
             <li>
-              <Link to="/learn/time-decay" className="text-cyan-400 hover:underline">Step 5</Link> — the option as a melting ice cube: theta.
+              <Link to="/learn/time-decay" className="text-[var(--color-accent)] hover:underline">Step 5</Link> — the option as a melting ice cube: theta.
             </li>
             <li>
-              <Link to="/learn/greeks" className="text-cyan-400 hover:underline">Step 6</Link> — the Greek-letter risk measures traders actually use.
+              <Link to="/learn/greeks" className="text-[var(--color-accent)] hover:underline">Step 6</Link> — the Greek-letter risk measures traders actually use.
             </li>
             <li>
-              <Link to="/learn/monte-carlo" className="text-cyan-400 hover:underline">Step 7</Link> — price the same option by simulation and watch it converge to the formula.
+              <Link to="/learn/monte-carlo" className="text-[var(--color-accent)] hover:underline">Step 7</Link> — price the same option by simulation and watch it converge to the formula.
             </li>
             <li>
-              <Link to="/learn/limitations" className="text-cyan-400 hover:underline">Step 8</Link> — what Black–Scholes assumes, and what happens when the world breaks those assumptions.
+              <Link to="/learn/limitations" className="text-[var(--color-accent)] hover:underline">Step 8</Link> — what Black–Scholes assumes, and what happens when the world breaks those assumptions.
             </li>
             <li>
-              <Link to="/" className="text-cyan-400 hover:underline">The dashboard</Link> — everything at once, with full derivations under every number.
+              <Link to="/" className="text-[var(--color-accent)] hover:underline">The dashboard</Link> — everything at once, with full derivations under every number.
             </li>
           </ul>
         </div>

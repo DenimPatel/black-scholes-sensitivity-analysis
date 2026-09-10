@@ -13,27 +13,27 @@ interface InfoCardProps {
 const InfoCard: React.FC<InfoCardProps> = ({ title, value, description, calculation, isExpanded, onClick }) => {
   return (
     <div
-      className={`bg-gray-700/50 p-4 rounded-lg group relative border border-gray-600 hover:border-cyan-500 transition-all duration-300 cursor-pointer ${isExpanded ? 'lg:col-span-2' : ''}`}
+      className={`glass-card glass-card-hover p-4 group relative cursor-pointer ${isExpanded ? 'lg:col-span-2' : ''}`}
       onClick={onClick}
     >
       <div className="flex justify-between items-start">
         <div>
-          <h4 className="text-sm text-gray-400 font-medium truncate">{title}</h4>
-          <p className="text-xl font-semibold text-white mt-1">{value}</p>
+          <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-400 truncate">{title}</h4>
+          <p className="text-2xl font-mono font-bold tabular-nums text-slate-900 mt-1">{value}</p>
         </div>
       </div>
 
       {isExpanded && calculation && (
-        <div className="mt-4 pt-4 border-t border-gray-600">
-          <h5 className="text-sm font-semibold text-cyan-400 mb-2">Calculation Details</h5>
-          <Equation className="text-xs text-gray-300 whitespace-pre-wrap font-mono leading-relaxed">{calculation}</Equation>
+        <div className="mt-4 pt-4 border-t border-slate-200">
+          <h5 className="text-sm font-semibold text-[var(--color-accent-700)] mb-2">Calculation Details</h5>
+          <Equation className="text-xs text-slate-600 whitespace-pre-wrap font-mono leading-relaxed">{calculation}</Equation>
         </div>
       )}
 
       {/* Tooltip */}
-      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs p-2 bg-gray-900 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 shadow-lg">
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs p-2 bg-[var(--color-ink)] text-[var(--color-paper)] text-xs rounded-[var(--radius-md)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 shadow-[var(--shadow-md-paper)]">
         {description}
-        <svg className="absolute text-gray-900 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255">
+        <svg className="absolute text-[var(--color-ink)] h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255">
             <polygon className="fill-current" points="0,0 127.5,127.5 255,0"/>
         </svg>
       </div>

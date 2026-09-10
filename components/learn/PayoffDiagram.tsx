@@ -109,29 +109,29 @@ const PayoffDiagram: React.FC = () => {
       <div className="h-80 w-full">
         <ResponsiveContainer>
           <ComposedChart data={model.data} margin={{ top: 10, right: 20, bottom: 20, left: 10 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#37415188" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#44414188" />
             <XAxis
               dataKey="s"
               type="number"
               domain={[model.min, model.max]}
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => `$${v.toFixed(0)}`}
-              stroke="#4B5563"
-              label={{ value: 'Stock price at expiry', position: 'insideBottom', dy: 8, fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: 'Stock price at expiry', position: 'insideBottom', dy: 8, fill: '#605D5D' }}
             />
             <YAxis
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => `$${v.toFixed(0)}`}
-              stroke="#4B5563"
-              label={{ value: 'P&L at expiry ($)', angle: -90, position: 'insideLeft', fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: 'P&L at expiry ($)', angle: -90, position: 'insideLeft', fill: '#605D5D' }}
             />
             <Tooltip
               content={({ active, payload, label }) => {
                 if (!active || !payload || payload.length === 0) return null;
                 const pnl = payload[0].value as number;
                 return (
-                  <div className="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs shadow-xl">
-                    <p className="text-gray-400">Stock at expiry: <span className="text-white">${Number(label).toFixed(2)}</span></p>
+                  <div className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs shadow-xl">
+                    <p className="text-slate-400">Stock at expiry: <span className="text-white">${Number(label).toFixed(2)}</span></p>
                     <p className={`font-semibold ${pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                       P&L: {pnl >= 0 ? '+' : '-'}${Math.abs(pnl).toFixed(2)}
                     </p>
@@ -139,29 +139,29 @@ const PayoffDiagram: React.FC = () => {
                 );
               }}
             />
-            <Area type="monotone" dataKey="pnl" stroke="none" fill="#2DD4BF" fillOpacity={0.12} isAnimationActive={false} />
-            <ReferenceLine y={0} stroke="#6B7280" strokeWidth={1.5} />
+            <Area type="monotone" dataKey="pnl" stroke="none" fill="#006786" fillOpacity={0.12} isAnimationActive={false} />
+            <ReferenceLine y={0} stroke="#605D5D" strokeWidth={1.5} />
             <ReferenceLine
               x={K}
-              stroke="#A78BFA"
+              stroke="#7B4B90"
               strokeDasharray="4 4"
-              label={{ value: 'Strike K', position: 'top', fill: '#A78BFA', fontSize: 11 }}
+              label={{ value: 'Strike K', position: 'top', fill: '#7B4B90', fontSize: 11 }}
             />
             <ReferenceLine
               x={S}
-              stroke="#38BDF8"
+              stroke="#62C5EE"
               strokeDasharray="4 4"
-              label={{ value: 'S today', position: 'top', fill: '#38BDF8', fontSize: 11 }}
+              label={{ value: 'S today', position: 'top', fill: '#62C5EE', fontSize: 11 }}
             />
             {model.breakeven >= model.min && model.breakeven <= model.max && (
               <ReferenceDot
                 x={model.breakeven}
                 y={0}
                 r={5}
-                fill="#FBBF24"
-                stroke="#111827"
+                fill="#C8963A"
+                stroke="#201E1D"
                 strokeWidth={2}
-                label={{ value: 'Breakeven', position: 'top', fill: '#FBBF24', fontSize: 11, dy: -8 }}
+                label={{ value: 'Breakeven', position: 'top', fill: '#C8963A', fontSize: 11, dy: -8 }}
               />
             )}
           </ComposedChart>
