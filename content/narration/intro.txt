@@ -1,0 +1,9 @@
+Welcome to the Black-Scholes guided tour. Over eight short steps, you'll build a real intuition for how options are priced, using the interactive charts and sliders on this site.
+
+Let's start with the basics. A stock option is a contract that gives its owner the right, but not the obligation, to buy or sell a fixed number of shares at a fixed price, up to a fixed date. A call gives you the right to buy at the strike price. A put gives you the right to sell there.
+
+Every option in this tour is European style, meaning it can only be exercised on the expiration date itself, not before. That's the case Fischer Black and Myron Scholes solved in 1973, and their formula is still the backbone of how markets talk about options today.
+
+The whole model boils down to five numbers: the stock price, the strike price, the time to expiry, the volatility, and the risk-free rate. Everything on this site is about how a fair price falls out of exactly those five inputs.
+
+Try moving the sliders on the right and watch the fair call and put prices update live. When you're ready, press next, or let this tour carry you automatically to step two: the payoff at expiry.

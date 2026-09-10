@@ -65,6 +65,7 @@ const Intro: React.FC = () => {
 
   return (
     <LearnPage
+      stepId="intro"
       step={1}
       title="What is an option?"
       tagline="The one contract, the five inputs, and why a formula can price it at all."

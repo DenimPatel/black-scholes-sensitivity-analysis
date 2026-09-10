@@ -7,6 +7,7 @@ import Equation, { InlineMath } from '../../components/Equation';
 const MonteCarlo: React.FC = () => {
   return (
     <LearnPage
+      stepId="monte-carlo"
       step={7}
       title="Monte Carlo pricing"
       tagline="Throw the dice the way the market does — and watch the average find the formula."

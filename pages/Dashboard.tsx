@@ -1,14 +1,17 @@
 
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { Headphones } from 'lucide-react';
 import { calculateBlackScholes, calculateGreeks } from '../services/blackScholes';
 import { BlackScholesResults, Greeks } from '../types';
 import Results from '../components/Results';
 import GreeksGrid from '../components/learn/GreeksGrid';
 import { useModelParams } from '../state/ParamsContext';
+import { useGuidedTour } from '../state/GuidedTourContext';
 
 const Dashboard: React.FC = () => {
   const { params } = useModelParams();
+  const { startTour } = useGuidedTour();
 
   const { results, greeks } = useMemo(() => {
     const results: BlackScholesResults = calculateBlackScholes(params);
@@ -35,6 +38,14 @@ const Dashboard: React.FC = () => {
           tiles under <strong>Calculated Values</strong> and the info icons on <strong>Model Parameters</strong> to
           see the full derivations.
         </p>
+        <button
+          type="button"
+          onClick={startTour}
+          className="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-[var(--radius-sm)] bg-[var(--color-accent)] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+        >
+          <Headphones size={16} />
+          Start the guided audio tour
+        </button>
       </div>
 
       <div className="space-y-8">

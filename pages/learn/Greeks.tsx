@@ -60,6 +60,7 @@ const reference = [
 const Greeks: React.FC = () => {
   return (
     <LearnPage
+      stepId="greeks"
       step={6}
       title="The Greeks"
       tagline="The seven risk meters traders actually read — and the identity that ties calls to puts."

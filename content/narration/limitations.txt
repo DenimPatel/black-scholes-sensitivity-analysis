@@ -1,0 +1,7 @@
+Everything so far has been about the model's interior: how its five inputs combine into a price. This final step faces outward. Black-Scholes is a perfect answer to an idealized question, and the idealization is exactly where the danger lives.
+
+The model assumes the stock follows a smooth random process with constant volatility, but real prices jump on news and earnings, and volatility itself moves in clusters. It assumes trading is continuous and free, but real hedging costs money every time you rebalance. It assumes a constant, known risk-free rate, no dividends, and that options can only be exercised at expiry, when in reality many contracts allow early exercise.
+
+The gap between the model's price and the market's actual quoted price has its own name and its own market: implied volatility, and the smile or skew it traces across strikes. That gap is where real information about real risk lives, and professionals track it constantly even while using the Black-Scholes Greeks as their everyday working language.
+
+That's the whole tour. You've gone from a single contract and five inputs, through the payoff, the probability world, the price itself, time decay, the Greeks, simulation, and finally the model's honest limits. Explore the dashboard freely now, or replay any step whenever you want a refresher.

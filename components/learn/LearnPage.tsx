@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NarrationBar from './NarrationBar';
 
 interface PageRef {
   to: string;
@@ -8,6 +9,7 @@ interface PageRef {
 }
 
 interface LearnPageProps {
+  stepId: string;
   step: number;
   totalSteps?: number;
   title: string;
@@ -17,7 +19,7 @@ interface LearnPageProps {
   next?: PageRef;
 }
 
-const LearnPage: React.FC<LearnPageProps> = ({ step, totalSteps = 8, title, tagline, children, prev, next }) => {
+const LearnPage: React.FC<LearnPageProps> = ({ stepId, step, totalSteps = 8, title, tagline, children, prev, next }) => {
   return (
     <div>
       <div className="mb-8">
@@ -25,7 +27,8 @@ const LearnPage: React.FC<LearnPageProps> = ({ step, totalSteps = 8, title, tagl
           Step {step} of {totalSteps}
         </p>
         <h1 className="text-3xl md:text-4xl font-bold mb-2">{title}</h1>
-        <p className="text-lg text-slate-500">{tagline}</p>
+        <p className="text-lg text-slate-500 mb-4">{tagline}</p>
+        <NarrationBar stepId={stepId} />
       </div>
 
       <div className="space-y-8 min-w-0">{children}</div>

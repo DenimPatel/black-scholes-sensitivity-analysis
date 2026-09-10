@@ -193,6 +193,7 @@ const glossaryTerms = [
 const Limitations: React.FC = () => {
   return (
     <LearnPage
+      stepId="limitations"
       step={8}
       title="What the model assumes — and what breaks it"
       tagline="Black-Scholes is the ideal case. Every real market deviates from it, and knowing where is half the skill."
