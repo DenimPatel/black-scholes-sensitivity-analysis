@@ -9,6 +9,7 @@ import { InlineMath } from '../../components/Equation';
 const PriceStructure: React.FC = () => {
   return (
     <LearnPage
+      stepId="price-structure"
       step={4}
       title="Anatomy of the price"
       tagline="Intrinsic value, time value, no-arbitrage bounds, and what each input actually does."

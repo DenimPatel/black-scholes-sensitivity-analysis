@@ -1,0 +1,9 @@
+You've seen the landscape the stock lands in, and the payoff that pays out there. Now let's put the price itself on the table and take it apart.
+
+Every option price is a stack of two layers. Intrinsic value is what the option would be worth if you exercised it immediately: the stock price minus the strike, for a call, floored at zero. Time value is everything on top of that: the market's charge for the chance the stock still moves in your favor before expiry.
+
+In the chart, each bar is a solid band for intrinsic value with a lighter cap on top for time value. The dashed line is the no-arbitrage floor for the call: no trader can rationally price it below that line, or someone else could lock in a riskless profit.
+
+Try sweeping the stock price slider across the strike and watch time value peak exactly at the money, where the outcome is most uncertain, and shrink toward zero deep in or out of the money, where the outcome is nearly certain either way.
+
+Now try volatility and time to expiry: both stretch the time-value cap, because both widen the range of where the stock might land. Every one of the five inputs pushes on this picture somewhere you can point to. Next, we watch what happens to that time-value cap as the clock runs down: time decay.

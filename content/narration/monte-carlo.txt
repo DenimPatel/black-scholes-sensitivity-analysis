@@ -1,0 +1,7 @@
+Step three told you the Black-Scholes formula is really just a discounted expected payoff. If that's true, we should be able to price the option by brute force: simulate thousands of random risk-neutral stock paths, average the payoffs they produce, discount that average back to today, and land on the same price the formula gives. This page does exactly that, live.
+
+Each simulated path draws a random terminal stock price from the same lognormal distribution you saw in step three. Watch the running average in the chart converge toward the Black-Scholes price as more paths are added, with a shrinking band of error around it.
+
+That error band follows a simple rule: the standard error is the sample standard deviation divided by the square root of the number of paths. Quadruple the number of simulated paths, and the noise in your estimate is cut in half. That's the law of large numbers doing its job in front of you.
+
+Try dragging the path count up and down and watch the estimate settle. This brute-force method matters beyond this demo: it's the same technique used to price options with no closed-form formula at all, on exotic payoffs or under more realistic, non-lognormal models. Finally, let's talk honestly about where the clean Black-Scholes world starts to crack.

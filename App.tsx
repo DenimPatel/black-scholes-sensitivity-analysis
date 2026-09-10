@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './components/learn/Layout';
 import { ParamsProvider } from './state/ParamsContext';
+import { GuidedTourProvider } from './state/GuidedTourContext';
 import Dashboard from './pages/Dashboard';
 import Intro from './pages/learn/Intro';
 import Payoff from './pages/learn/Payoff';
@@ -21,20 +22,22 @@ const App: React.FC = () => {
   return (
     <BrowserRouter basename={basename}>
       <ParamsProvider>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/learn" element={<Intro />} />
-            <Route path="/learn/payoff" element={<Payoff />} />
-            <Route path="/learn/distribution" element={<Distribution />} />
-            <Route path="/learn/price-structure" element={<PriceStructure />} />
-            <Route path="/learn/time-decay" element={<TimeDecay />} />
-            <Route path="/learn/greeks" element={<Greeks />} />
-            <Route path="/learn/monte-carlo" element={<MonteCarlo />} />
-            <Route path="/learn/limitations" element={<Limitations />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Layout>
+        <GuidedTourProvider>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/learn" element={<Intro />} />
+              <Route path="/learn/payoff" element={<Payoff />} />
+              <Route path="/learn/distribution" element={<Distribution />} />
+              <Route path="/learn/price-structure" element={<PriceStructure />} />
+              <Route path="/learn/time-decay" element={<TimeDecay />} />
+              <Route path="/learn/greeks" element={<Greeks />} />
+              <Route path="/learn/monte-carlo" element={<MonteCarlo />} />
+              <Route path="/learn/limitations" element={<Limitations />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Layout>
+        </GuidedTourProvider>
       </ParamsProvider>
     </BrowserRouter>
   );

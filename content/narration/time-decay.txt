@@ -1,0 +1,7 @@
+An option's payoff only exists at one instant: expiry. Between now and then, the time value you just saw is slowly spent, even if the stock doesn't move at all, even with no news and no volatility surprise. That bleed is called time decay, and it's the single most counterintuitive thing about options for people coming from stocks.
+
+The chart plots the call and put price as a function of remaining time, with everything else held at your slider values. The yellow line marks your current maturity, and the dot shows where your option sits on that curve. The steeper the curve at your dot, the more value you're losing per day. That daily slope has a name: theta.
+
+Notice the shape. Far out on the right, a year or more from expiry, the curve is nearly flat: shaving off a month barely changes the odds. As you slide toward expiry, the curve steepens, and the bleed accelerates. That's why time decay is famously non-linear: options lose value slowly at first, then fast in their final weeks.
+
+This melting-ice-cube behavior is the price of the optionality itself. Now that you've felt time decay, let's meet the full family of risk measures traders use to manage it: the Greeks.

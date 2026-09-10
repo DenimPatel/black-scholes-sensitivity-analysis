@@ -15,6 +15,7 @@ const positions = [
 const Payoff: React.FC = () => {
   return (
     <LearnPage
+      stepId="payoff"
       step={2}
       title="The payoff at expiry"
       tagline="Strip away the pricing and ask the only question that matters at settlement: what do I win?"

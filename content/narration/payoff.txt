@@ -1,0 +1,9 @@
+Everything an option does in its lifetime converges to one moment: expiry. At that moment the contract settles into its payoff, a simple, piecewise-linear function of where the stock has landed.
+
+Look at the chart. It shows your profit or loss at expiry, after the premium, for whichever position you pick. The vertical line marks the strike price. The yellow dot is the breakeven: the one stock price where you end up exactly whole.
+
+There are four basic positions. A long call bets the stock rises, with unlimited upside and a loss capped at the premium you paid. A short call is the mirror image: you collect the premium up front, but your loss is unbounded if the stock runs away. A long put bets the stock falls. And a short put is like selling insurance: capped gain, growing loss as the stock heads toward zero.
+
+Try switching to short call in the chart and watch the shape. Small, certain gain on one side; an open-ended tail of risk on the other. That asymmetry is exactly why calls carry a rich price, and exactly why shorting them, unhedged, is how trading desks blow up.
+
+At expiry, an option is worth exactly its intrinsic value. But today, its price is usually higher than that. Where does the extra value come from? That's what the next few steps explain.

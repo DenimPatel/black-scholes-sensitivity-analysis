@@ -8,6 +8,7 @@ import Equation, { InlineMath } from '../../components/Equation';
 const Distribution: React.FC = () => {
   return (
     <LearnPage
+      stepId="distribution"
       step={3}
       title="The risk-neutral world"
       tagline="Where the stock lands, why that is a probability, and where N(d₁) and N(d₂) come from."

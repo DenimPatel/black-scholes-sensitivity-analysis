@@ -8,6 +8,7 @@ import { InlineMath } from '../../components/Equation';
 const TimeDecay: React.FC = () => {
   return (
     <LearnPage
+      stepId="time-decay"
       step={5}
       title="Time decay"
       tagline="Options are clocks. This is what the melting looks like — and theta, the meter for it."

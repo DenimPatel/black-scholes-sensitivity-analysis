@@ -1,0 +1,7 @@
+You know what the option pays at expiry. The problem is, the stock's landing spot is unknown, so the payoff is random. Black and Scholes solved this with an idea that felt radical in 1973: instead of asking what the stock will actually do, they asked what it would do in a world where every investor is indifferent to risk.
+
+This is called the risk-neutral world. It does not mean the market thinks risk isn't real. It's a pricing device: there is exactly one probability measure under which every tradable asset grows at the risk-free rate, and option prices become simply the discounted expected payoff in that world. The absence of arbitrage is what makes this work, not belief about the future.
+
+In that risk-neutral world, the stock follows a random process called geometric Brownian motion, and at expiry its price lands somewhere on a lognormal distribution: always positive, and skewed to the right. Watch the chart as you move volatility and time: a higher volatility or a longer horizon fattens and spreads that distribution, which is exactly what makes an option on a jumpier stock, or a longer-dated one, worth more.
+
+This distribution is where the famous N of d1 and N of d2 terms in the Black-Scholes formula come from: they're just areas under this curve. With the payoff from step two and the probability world from this step, you now have everything you need to see how the price itself is built. That's step four.

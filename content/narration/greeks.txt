@@ -1,0 +1,7 @@
+Every input you've been moving has a named sensitivity attached to it, and traders call these the Greeks.
+
+Delta measures how much the option price moves per dollar move in the stock, and it doubles as a hedge ratio: short delta shares of stock against a long call to become delta-neutral. Gamma measures how fast delta itself changes, and it peaks for at-the-money options close to expiry, exactly where hedging gets hardest. Vega measures sensitivity to volatility, and it's largest for at-the-money, long-dated options. Theta is the time decay you just met. And rho measures sensitivity to the risk-free rate, usually the smallest effect of the five for short-dated options.
+
+Explore the grid of charts: each tile sweeps one input and traces out the corresponding Greek. Notice where each curve peaks, and think about why: gamma and vega both live at the money, where the outcome is least certain and small changes in inputs swing the odds the most.
+
+These five numbers are the actual working vocabulary of an options desk. Everything so far has come from a closed-form formula. Next, we'll price the same option a completely different way, by brute-force simulation, and watch it converge to the same answer.

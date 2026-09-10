@@ -1,19 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
-export const learnSections = [
-  { to: '/learn', label: '1 · Intro' },
-  { to: '/learn/payoff', label: '2 · Payoff' },
-  { to: '/learn/distribution', label: '3 · Distribution' },
-  { to: '/learn/price-structure', label: '4 · Price' },
-  { to: '/learn/time-decay', label: '5 · Time decay' },
-  { to: '/learn/greeks', label: '6 · Greeks' },
-  { to: '/learn/monte-carlo', label: '7 · Monte Carlo' },
-  { to: '/learn/limitations', label: '8 · Limitations' },
-];
+import { Check } from 'lucide-react';
+import { curriculum } from '../../content/curriculum';
+import { useGuidedTour } from '../../state/GuidedTourContext';
 
 const railLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `block border-l-2 pl-2.5 py-1 text-sm transition-colors ${
+  `flex items-center gap-1.5 border-l-2 pl-2.5 py-1 text-sm transition-colors ${
     isActive
       ? 'border-[var(--color-accent)] text-slate-900 font-semibold'
       : 'border-slate-200 text-slate-500 hover:text-slate-800 hover:border-slate-400'
@@ -24,6 +16,8 @@ interface ContentsRailProps {
 }
 
 const ContentsRail: React.FC<ContentsRailProps> = ({ onNavigate }) => {
+  const { completedIds } = useGuidedTour();
+
   return (
     <nav aria-label="Contents" className="text-sm custom-scrollbar">
       <div className="pb-4 mb-4 border-b border-slate-200">
@@ -36,13 +30,17 @@ const ContentsRail: React.FC<ContentsRailProps> = ({ onNavigate }) => {
             Dashboard
           </NavLink>
         </li>
-        {learnSections.map((s) => (
-          <li key={s.to}>
-            <NavLink to={s.to} end={s.to === '/learn'} className={railLinkClass} onClick={onNavigate}>
-              {s.label}
-            </NavLink>
-          </li>
-        ))}
+        {curriculum.map((s) => {
+          const done = completedIds.includes(s.id);
+          return (
+            <li key={s.path}>
+              <NavLink to={s.path} end={s.path === '/learn'} className={railLinkClass} onClick={onNavigate}>
+                <span className="flex-1">{s.label}</span>
+                {done && <Check size={13} className="text-[var(--color-accent-700)] shrink-0" aria-label="Completed" />}
+              </NavLink>
+            </li>
+          );
+        })}
       </ol>
     </nav>
   );
