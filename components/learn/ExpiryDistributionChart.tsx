@@ -109,29 +109,29 @@ const ExpiryDistributionChart: React.FC = () => {
       <div className="h-80 w-full">
         <ResponsiveContainer>
           <ComposedChart data={data.data} margin={{ top: 10, right: 20, bottom: 20, left: 10 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#37415188" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#44414188" />
             <XAxis
               dataKey="x"
               type="number"
               domain={[data.min, data.max]}
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => `$${v.toFixed(0)}`}
-              stroke="#4B5563"
-              label={{ value: 'Stock price at expiry', position: 'insideBottom', dy: 8, fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: 'Stock price at expiry', position: 'insideBottom', dy: 8, fill: '#605D5D' }}
             />
             <YAxis
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => `${v.toFixed(0)}%`}
-              stroke="#4B5563"
-              label={{ value: 'Probability (%)', angle: -90, position: 'insideLeft', fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: 'Probability (%)', angle: -90, position: 'insideLeft', fill: '#605D5D' }}
             />
             <Tooltip
               content={({ active, payload, label }) => {
                 if (!active || !payload || payload.length === 0) return null;
                 const pct = payload[0].value as number;
                 return (
-                  <div className="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs shadow-xl">
-                    <p className="text-gray-400">Stock at expiry: <span className="text-white">${Number(label).toFixed(1)}</span></p>
+                  <div className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs shadow-xl">
+                    <p className="text-slate-400">Stock at expiry: <span className="text-white">${Number(label).toFixed(1)}</span></p>
                     <p className="text-white">{pct.toFixed(2)}% of paths</p>
                   </div>
                 );
@@ -140,9 +140,9 @@ const ExpiryDistributionChart: React.FC = () => {
             <Area
               type="stepAfter"
               dataKey="pct"
-              stroke="#2DD4BF"
+              stroke="#006786"
               strokeWidth={1.5}
-              fill="#2DD4BF"
+              fill="#006786"
               fillOpacity={0.15}
               isAnimationActive={false}
             />
@@ -151,21 +151,21 @@ const ExpiryDistributionChart: React.FC = () => {
                 <ReferenceArea
                   x1={K}
                   x2={data.max}
-                  fill="#2DD4BF"
+                  fill="#006786"
                   fillOpacity={0.1}
                   ifOverflow="extendDomain"
                 />
                 <ReferenceLine
                   x={data.forward}
-                  stroke="#FBBF24"
+                  stroke="#C8963A"
                   strokeDasharray="4 4"
-                  label={{ value: 'Forward S·e^(rT)', position: 'insideTopLeft', angle: 90, fill: '#FBBF24', fontSize: 11 }}
+                  label={{ value: 'Forward S·e^(rT)', position: 'insideTopLeft', angle: 90, fill: '#C8963A', fontSize: 11 }}
                 />
                 <ReferenceLine
                   x={K}
-                  stroke="#A78BFA"
+                  stroke="#7B4B90"
                   strokeDasharray="4 4"
-                  label={{ value: 'Strike K', position: 'insideTopRight', angle: 90, fill: '#A78BFA', fontSize: 11 }}
+                  label={{ value: 'Strike K', position: 'insideTopRight', angle: 90, fill: '#7B4B90', fontSize: 11 }}
                 />
               </>
             ) : (
@@ -173,28 +173,28 @@ const ExpiryDistributionChart: React.FC = () => {
                 <ReferenceArea
                   x1={data.min}
                   x2={data.breakeven}
-                  fill="#F43F5E"
+                  fill="#FF458E"
                   fillOpacity={0.08}
                   ifOverflow="extendDomain"
                 />
                 <ReferenceArea
                   x1={data.breakeven}
                   x2={data.max}
-                  fill="#10B981"
+                  fill="#2F8365"
                   fillOpacity={0.08}
                   ifOverflow="extendDomain"
                 />
                 <ReferenceLine
                   x={data.breakeven}
-                  stroke="#FBBF24"
+                  stroke="#C8963A"
                   strokeDasharray="4 4"
-                  label={{ value: 'Breakeven', position: 'insideTopLeft', angle: 90, fill: '#FBBF24', fontSize: 11 }}
+                  label={{ value: 'Breakeven', position: 'insideTopLeft', angle: 90, fill: '#C8963A', fontSize: 11 }}
                 />
                 <ReferenceLine
                   x={K}
-                  stroke="#A78BFA"
+                  stroke="#7B4B90"
                   strokeDasharray="4 4"
-                  label={{ value: 'Strike K', position: 'insideTopRight', angle: 90, fill: '#A78BFA', fontSize: 11 }}
+                  label={{ value: 'Strike K', position: 'insideTopRight', angle: 90, fill: '#7B4B90', fontSize: 11 }}
                 />
               </>
             )}

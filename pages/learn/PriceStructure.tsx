@@ -24,9 +24,9 @@ const PriceStructure: React.FC = () => {
 
         <WhatYouSee>
           <p>
-            The call and put are each drawn as a <span className="text-teal-300">solid band (intrinsic value)</span> with a
-            <span className="text-teal-200"> lighter cap on top (time value)</span>. The dashed amber line is the{' '}
-            <span className="text-amber-300">no-arbitrage floor</span> for the call:{' '}
+            The call and put are each drawn as a <span className="text-[var(--color-accent-700)]">solid band (intrinsic value)</span> with a
+            <span className="text-[var(--color-accent-400)]"> lighter cap on top (time value)</span>. The dashed amber line is the{' '}
+            <span className="text-amber-600">no-arbitrage floor</span> for the call:{' '}
             <InlineMath>{'\\max(0,\\ S - K e^{-rT})'}</InlineMath> — no trader can price the call below it, or someone
             buys the call, borrows against the strike, and locks in a riskless profit.
           </p>
@@ -35,14 +35,14 @@ const PriceStructure: React.FC = () => {
         <PriceDecompositionChart />
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">The two layers</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">The two layers</h2>
           <p>
-            <span className="text-white font-semibold">Intrinsic value</span> is what the option is worth if it
+            <span className="text-slate-900 font-semibold">Intrinsic value</span> is what the option is worth if it
             settled right now: <InlineMath>{'\\max(S - K, 0)'}</InlineMath> for the call. An in-the-money option's
             solid band is that number; it is real, exercisable, certain.
           </p>
           <p>
-            <span className="text-white font-semibold">Time value</span> is everything else: the charge for the chance
+            <span className="text-slate-900 font-semibold">Time value</span> is everything else: the charge for the chance
             that the stock moves into your favor before expiry. It is the part that is uncertain, and it is the part
             that dies at expiry. Notice where it is largest — at the strike — because at-the-money is where the
             option has the most "to become": the coin is most nearly in the air.
@@ -59,7 +59,7 @@ const PriceStructure: React.FC = () => {
         </Callout>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">What each input does to the curve</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">What each input does to the curve</h2>
           <p>
             The comparison view below overlays the call price across a fan of inputs, holding the others at your
             slider values. This is the fastest way to develop the feel you will need later: the shape of each fan is
@@ -69,10 +69,10 @@ const PriceStructure: React.FC = () => {
 
         <WhatYouSee>
           <p>
-            Pick a fan. <span className="text-white font-semibold">Strikes</span> show how the price slides down as
-            the hurdle rises (moneyness). <span className="text-white font-semibold">Maturities</span> show the
+            Pick a fan. <span className="text-slate-900 font-semibold">Strikes</span> show how the price slides down as
+            the hurdle rises (moneyness). <span className="text-slate-900 font-semibold">Maturities</span> show the
             clock: longer options sit higher and flatter, and the gap between them is time value.{' '}
-            <span className="text-white font-semibold">Volatilities</span> fan around the at-the-money point — the
+            <span className="text-slate-900 font-semibold">Volatilities</span> fan around the at-the-money point — the
             only place a curve with zero time value is flat everywhere, and vol still lifts it.
           </p>
         </WhatYouSee>
@@ -88,15 +88,15 @@ const PriceStructure: React.FC = () => {
         </Callout>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">The full formula, now that it has a body</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">The full formula, now that it has a body</h2>
           <p>
             With the layers visible, the Black–Scholes call price reads as a statement about the stack:
           </p>
-          <div className="bg-gray-900/60 border border-gray-700 rounded-xl p-4 text-sm text-gray-300 leading-7 space-y-2">
+          <div className="glass-card p-4 text-sm text-slate-600 leading-7 space-y-2">
             <p>
               <InlineMath>{'C = \\underbrace{S\\,N(d_1)}_{\\text{intrinsic, grown at rate } r} - \\underbrace{K e^{-rT}\\,N(d_2)}_{\\text{strike paid only if you exercise}}'}</InlineMath>
             </p>
-            <p className="text-gray-400">
+            <p className="text-slate-400">
               You carry the value of the stock, weighted by the chance you'll finish in the money (N(d₁) — slightly more
               than the raw probability, because the stock path you're exposed to is tilted in your favor). And you
               carry the strike, discounted, weighted by the chance you actually have to pay it (N(d₂)). The difference

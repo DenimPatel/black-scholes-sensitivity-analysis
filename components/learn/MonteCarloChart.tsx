@@ -75,46 +75,46 @@ const MonteCarloChart: React.FC = () => {
           onChange={(v) => setOption(v as OptionType)}
         />
         <div>
-          <p className="text-xs font-medium text-gray-500 mb-1.5">Simulation</p>
+          <p className="text-xs font-medium text-slate-500 mb-1.5">Simulation</p>
           <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => setSeed(Math.floor(Math.random() * 1e9))}
-              className="px-3 py-1 rounded-md text-sm border border-gray-700 bg-gray-900/60 text-gray-300 hover:border-cyan-500 hover:text-cyan-300 transition-colors"
+              className="px-3 py-1 rounded-[var(--radius-md)] text-sm glass-chip text-slate-600 hover:border-[var(--color-accent)] hover:text-[var(--color-accent-700)] transition-colors"
             >
               Reroll the paths
             </button>
-            <span className="text-xs text-gray-500 font-mono">seed = {seed}</span>
+            <span className="text-xs text-slate-500 font-mono">seed = {seed}</span>
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">
             Estimate vs number of simulated paths
           </p>
           <div className="h-72">
             <ResponsiveContainer>
               <ComposedChart data={model.data} margin={{ top: 10, right: 20, bottom: 25, left: 10 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#37415188" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#44414188" />
                 <XAxis
                   dataKey="paths"
                   type="number"
                   scale="log"
                   domain={[100, 51200]}
                   ticks={PATH_COUNTS}
-                  tick={{ fontSize: 11, fill: '#9CA3AF' }}
+                  tick={{ fontSize: 11, fill: '#605D5D' }}
                   tickFormatter={formatPaths}
-                  stroke="#4B5563"
-                  label={{ value: 'Simulated paths (log scale)', position: 'insideBottom', dy: 10, fill: '#9CA3AF' }}
+                  stroke="#D7D3D3"
+                  label={{ value: 'Simulated paths (log scale)', position: 'insideBottom', dy: 10, fill: '#605D5D' }}
                 />
                 <YAxis
-                  tick={{ fontSize: 11, fill: '#9CA3AF' }}
+                  tick={{ fontSize: 11, fill: '#605D5D' }}
                   tickFormatter={(v) => `$${Number(v).toFixed(2)}`}
-                  stroke="#4B5563"
+                  stroke="#D7D3D3"
                   domain={['auto', 'auto']}
-                  label={{ value: 'Estimated price ($)', angle: -90, position: 'insideLeft', fill: '#9CA3AF' }}
+                  label={{ value: 'Estimated price ($)', angle: -90, position: 'insideLeft', fill: '#605D5D' }}
                 />
                 <Tooltip
                   content={({ active, payload, label }) => {
@@ -122,27 +122,27 @@ const MonteCarloChart: React.FC = () => {
                     const est = payload.find((p) => p.dataKey === 'estimate')?.value as number | undefined;
                     if (est === undefined) return null;
                     return (
-                      <div className="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs shadow-xl space-y-1">
-                        <p className="text-gray-400">{formatPaths(Number(label))} paths</p>
-                        <p className="text-teal-300">Estimate: ${est.toFixed(4)}</p>
+                      <div className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs shadow-xl space-y-1">
+                        <p className="text-slate-400">{formatPaths(Number(label))} paths</p>
+                        <p className="text-[var(--color-accent-700)]">Estimate: ${est.toFixed(4)}</p>
                         <p className="text-amber-300">Closed form: ${model.analytical.toFixed(4)}</p>
-                        <p className="text-gray-400">Gap: {(est - model.analytical).toFixed(4)}</p>
+                        <p className="text-slate-400">Gap: {(est - model.analytical).toFixed(4)}</p>
                       </div>
                     );
                   }}
                 />
                 <ReferenceLine
                   y={model.analytical}
-                  stroke="#FBBF24"
+                  stroke="#C8963A"
                   strokeDasharray="5 4"
-                  label={{ value: 'Closed form', position: 'insideTopRight', fill: '#FBBF24', fontSize: 11 }}
+                  label={{ value: 'Closed form', position: 'insideTopRight', fill: '#C8963A', fontSize: 11 }}
                 />
                 <Area
                   type="monotone"
                   dataKey="band"
                   name="±1 SE"
                   stroke="none"
-                  fill="#2DD4BF"
+                  fill="#006786"
                   fillOpacity={0.15}
                   isAnimationActive={false}
                 />
@@ -150,9 +150,9 @@ const MonteCarloChart: React.FC = () => {
                   type="monotone"
                   dataKey="estimate"
                   name="MC estimate"
-                  stroke="#2DD4BF"
+                  stroke="#006786"
                   strokeWidth={2}
-                  dot={{ r: 3, fill: '#2DD4BF', strokeWidth: 0 }}
+                  dot={{ r: 3, fill: '#006786', strokeWidth: 0 }}
                   isAnimationActive={false}
                 />
               </ComposedChart>
@@ -161,48 +161,48 @@ const MonteCarloChart: React.FC = () => {
         </div>
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">
             Where all {TOTAL_PATHS.toLocaleString()} paths landed at expiry
           </p>
           <div className="h-72">
             <ResponsiveContainer>
               <ComposedChart data={model.histData} margin={{ top: 10, right: 20, bottom: 25, left: 10 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#37415188" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#44414188" />
                 <XAxis
                   dataKey="x"
                   type="number"
                   domain={[model.histMin, model.histMax]}
-                  tick={{ fontSize: 11, fill: '#9CA3AF' }}
+                  tick={{ fontSize: 11, fill: '#605D5D' }}
                   tickFormatter={(v) => `$${v.toFixed(0)}`}
-                  stroke="#4B5563"
-                  label={{ value: 'Stock price at expiry', position: 'insideBottom', dy: 10, fill: '#9CA3AF' }}
+                  stroke="#D7D3D3"
+                  label={{ value: 'Stock price at expiry', position: 'insideBottom', dy: 10, fill: '#605D5D' }}
                 />
                 <YAxis
-                  tick={{ fontSize: 11, fill: '#9CA3AF' }}
+                  tick={{ fontSize: 11, fill: '#605D5D' }}
                   tickFormatter={(v) => `${v.toFixed(0)}%`}
-                  stroke="#4B5563"
-                  label={{ value: 'Probability (%)', angle: -90, position: 'insideLeft', fill: '#9CA3AF' }}
+                  stroke="#D7D3D3"
+                  label={{ value: 'Probability (%)', angle: -90, position: 'insideLeft', fill: '#605D5D' }}
                 />
                 <Tooltip
                   content={({ active, payload, label }) => {
                     if (!active || !payload || payload.length === 0) return null;
                     return (
-                      <div className="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs shadow-xl">
-                        <p className="text-gray-400">Stock at expiry: <span className="text-white">${Number(label).toFixed(1)}</span></p>
+                      <div className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs shadow-xl">
+                        <p className="text-slate-400">Stock at expiry: <span className="text-white">${Number(label).toFixed(1)}</span></p>
                         <p className="text-white">{(payload[0].value as number).toFixed(2)}% of paths</p>
                       </div>
                     );
                   }}
                 />
-                <ReferenceLine x={S0} stroke="#38BDF8" strokeDasharray="4 4" label={{ value: 'S today', position: 'insideTopLeft', angle: 90, fill: '#38BDF8', fontSize: 11 }} />
-                <ReferenceLine x={K} stroke="#A78BFA" strokeDasharray="4 4" label={{ value: 'K', position: 'insideTopRight', angle: 90, fill: '#A78BFA', fontSize: 11 }} />
+                <ReferenceLine x={S0} stroke="#62C5EE" strokeDasharray="4 4" label={{ value: 'S today', position: 'insideTopLeft', angle: 90, fill: '#62C5EE', fontSize: 11 }} />
+                <ReferenceLine x={K} stroke="#7B4B90" strokeDasharray="4 4" label={{ value: 'K', position: 'insideTopRight', angle: 90, fill: '#7B4B90', fontSize: 11 }} />
                 <Area
                   type="stepAfter"
                   dataKey="pct"
                   name="Paths"
-                  stroke="#F472B6"
+                  stroke="#D6006C"
                   strokeWidth={1.5}
-                  fill="#F472B6"
+                  fill="#D6006C"
                   fillOpacity={0.2}
                   isAnimationActive={false}
                 />

@@ -201,7 +201,7 @@ const Limitations: React.FC = () => {
       <Prose>
         <Lead>
           Everything so far has been about the model's interior: how its five inputs compose into a price. This final
-          step faces outward. The Black-Scholes formula is a <span className="text-white font-semibold">perfect
+          step faces outward. The Black-Scholes formula is a <span className="text-slate-900 font-semibold">perfect
           answer to an idealized question</span>, and the idealization is where the danger lives. Each assumption
           below is listed with the real-world failure that breaks it — not to dismiss the model, but to know exactly
           which part of reality it is holding still.
@@ -217,14 +217,14 @@ const Limitations: React.FC = () => {
         </Callout>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">The assumptions, and the cracks in each</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">The assumptions, and the cracks in each</h2>
           <ol className="space-y-5">
             {assumptions.map((a, i) => (
-              <li key={a.title} className="bg-gray-800/40 border border-gray-700 rounded-xl p-4">
-                <p className="font-semibold text-white text-sm leading-6">
+              <li key={a.title} className="glass-card p-4">
+                <p className="font-semibold text-slate-900 text-sm leading-6">
                   {i + 1}. {a.title}
                 </p>
-                <p className="text-sm text-rose-300/90 mt-2 leading-6">
+                <p className="text-sm text-rose-700 mt-2 leading-6">
                   <span className="font-semibold">What breaks it — </span>
                   {a.whatBreaks}
                 </p>
@@ -244,17 +244,17 @@ const Limitations: React.FC = () => {
         </Callout>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">If I remember one thing from this page</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">If I remember one thing from this page</h2>
           <p>
-            The formula's output is a <span className="text-white">price in an ideal world</span>, the market's quoted
-            price is <span className="text-white">a fact about this world</span>, and the difference between them — the
+            The formula's output is a <span className="text-slate-900">price in an ideal world</span>, the market's quoted
+            price is <span className="text-slate-900">a fact about this world</span>, and the difference between them — the
             implied volatility surface, the smile, the skew — is where real information about real risk lives. You now
             have the vocabulary to read it, and the charts on this site to feel it.
           </p>
         </div>
 
         <div>
-          <h2 className="text-xl font-semibold text-white mb-3">Glossary — the whole tour in one place</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-3">Glossary — the whole tour in one place</h2>
           <p>
             Every term introduced over the eight steps, collected here for reference.
           </p>
@@ -263,8 +263,8 @@ const Limitations: React.FC = () => {
 
         <Callout kind="try">
           <p>
-            Go back to the <span className="text-white font-semibold">strike fan</span> on Step 4 and sweep{' '}
-            <span className="text-white font-semibold">S</span> at very high volatility. In the real world that right
+            Go back to the <span className="text-slate-900 font-semibold">strike fan</span> on Step 4 and sweep{' '}
+            <span className="text-slate-900 font-semibold">S</span> at very high volatility. In the real world that right
             tail is even fatter than the lognormal — imagine the same picture with market-implied σ drawn from the
             skew. You are now seeing what a vol trader sees.
           </p>

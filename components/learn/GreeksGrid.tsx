@@ -39,7 +39,7 @@ const tileDefs: TileDef[] = [
     title: 'Call delta',
     caption:
       'S-shaped: ~0 deep out-of-the-money, 0.5 at the strike, ~1 deep in. The shorter the expiry, the steeper the S — this is also the share of the stock an ATM call behaves like.',
-    series: [{ dataKey: 'callDelta', name: 'Δ (call)', color: '#2DD4BF' }],
+    series: [{ dataKey: 'callDelta', name: 'Δ (call)', color: '#006786' }],
     valueGetters: (g) => [g.callDelta],
   },
   {
@@ -47,7 +47,7 @@ const tileDefs: TileDef[] = [
     title: 'Put delta',
     caption:
       'The call delta shifted down by one: it runs from 0 to −1. Shorting Δ shares of the stock makes a call "delta-neutral" — that is the whole idea behind hedging.',
-    series: [{ dataKey: 'putDelta', name: 'Δ (put)', color: '#F472B6' }],
+    series: [{ dataKey: 'putDelta', name: 'Δ (put)', color: '#D6006C' }],
     valueGetters: (g) => [g.putDelta],
   },
   {
@@ -55,7 +55,7 @@ const tileDefs: TileDef[] = [
     title: 'Gamma',
     caption:
       'Bell-shaped, peaking at the strike — gamma is biggest exactly where delta changes fastest. It is identical for calls and puts, and it blows up as an ATM option approaches expiry.',
-    series: [{ dataKey: 'gamma', name: 'Γ', color: '#A78BFA' }],
+    series: [{ dataKey: 'gamma', name: 'Γ', color: '#7B4B90' }],
     valueGetters: (g) => [g.gamma],
   },
   {
@@ -63,7 +63,7 @@ const tileDefs: TileDef[] = [
     title: 'Vega',
     caption:
       'Also bell-shaped, peaking at the strike, and it grows with time to expiry: the far-from-expiry, at-the-money option is the one that most "participates" in volatility.',
-    series: [{ dataKey: 'vega', name: 'ν (per 1% σ)', color: '#38BDF8' }],
+    series: [{ dataKey: 'vega', name: 'ν (per 1% σ)', color: '#62C5EE' }],
     valueGetters: (g) => [g.vega],
   },
   {
@@ -72,8 +72,8 @@ const tileDefs: TileDef[] = [
     caption:
       'Time decay: usually negative for long options, largest in magnitude for short-dated ATM options. Notice the put line: deep in the money it bends positive (the −rKe^{−rT} term).',
     series: [
-      { dataKey: 'callTheta', name: 'θ (call, per day)', color: '#2DD4BF' },
-      { dataKey: 'putTheta', name: 'θ (put, per day)', color: '#F472B6' },
+      { dataKey: 'callTheta', name: 'θ (call, per day)', color: '#006786' },
+      { dataKey: 'putTheta', name: 'θ (put, per day)', color: '#D6006C' },
     ],
     valueGetters: (g) => [g.callTheta, g.putTheta],
   },
@@ -82,7 +82,7 @@ const tileDefs: TileDef[] = [
     title: 'Call rho',
     caption:
       'Sensitivity to the risk-free rate. Nearly zero for out-of-the-money calls, and it climbs as the call goes in and lives longer — rate moves matter most to deep, long-dated calls.',
-    series: [{ dataKey: 'callRho', name: 'ρ (call, per 1% r)', color: '#FBBF24' }],
+    series: [{ dataKey: 'callRho', name: 'ρ (call, per 1% r)', color: '#C8963A' }],
     valueGetters: (g) => [g.callRho],
   },
   {
@@ -90,7 +90,7 @@ const tileDefs: TileDef[] = [
     title: 'Put rho',
     caption:
       'The mirror image: negative, because a falling rate helps puts. Same shape, flipped — put rho grows in magnitude for deep, long-dated puts.',
-    series: [{ dataKey: 'putRho', name: 'ρ (put, per 1% r)', color: '#FB923C' }],
+    series: [{ dataKey: 'putRho', name: 'ρ (put, per 1% r)', color: '#2F8365' }],
     valueGetters: (g) => [g.putRho],
   },
 ];
@@ -165,17 +165,17 @@ const GreeksGrid: React.FC<{ variant?: 'full' | 'compact' }> = ({ variant = 'ful
 
       <div className={variant === 'full' ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4' : 'grid grid-cols-1 md:grid-cols-2 gap-4'}>
         {tiles.map((tile) => (
-          <div key={tile.key} className="bg-gray-800/50 border border-gray-700 rounded-xl p-4 min-w-0">
+          <div key={tile.key} className="glass-card p-4 min-w-0">
             <div className="flex items-baseline justify-between gap-2 mb-2">
-              <h4 className="text-sm font-semibold text-white">{tile.title}</h4>
-              <span className="text-xs font-mono text-cyan-300 whitespace-nowrap">
+              <h4 className="text-sm font-semibold text-slate-900">{tile.title}</h4>
+              <span className="text-xs font-mono text-[var(--color-accent-700)] whitespace-nowrap">
                 {tile.value.map((v) => v.toFixed(4)).join(' / ')}
               </span>
             </div>
             {tile.series.length > 1 && (
               <div className="flex gap-3 mb-1">
                 {tile.series.map((s) => (
-                  <span key={s.name} className="flex items-center gap-1 text-[11px] text-gray-400">
+                  <span key={s.name} className="flex items-center gap-1 text-[11px] text-slate-400">
                     <span className="inline-block w-3 h-0.5 rounded" style={{ backgroundColor: s.color }} />
                     {s.name}
                   </span>
@@ -185,22 +185,22 @@ const GreeksGrid: React.FC<{ variant?: 'full' | 'compact' }> = ({ variant = 'ful
             <div className={variant === 'full' ? 'h-40' : 'h-32'}>
               <ResponsiveContainer>
                 <LineChart data={data} margin={{ top: 6, right: 8, bottom: 0, left: 0 }}>
-                  <CartesianGrid strokeDasharray="2 3" stroke="#37415166" vertical={false} />
+                  <CartesianGrid strokeDasharray="2 3" stroke="#44414166" vertical={false} />
                   <XAxis
                     dataKey="x"
                     type="number"
                     domain={[min, max]}
-                    tick={{ fontSize: 10, fill: '#6B7280' }}
+                    tick={{ fontSize: 10, fill: '#605D5D' }}
                     tickFormatter={formatX}
-                    stroke="#4B5563"
+                    stroke="#D7D3D3"
                   />
-                  <YAxis tick={{ fontSize: 10, fill: '#6B7280' }} stroke="#4B5563" width={44} tickFormatter={(v: number) => (Math.abs(v) >= 1000 ? v.toFixed(0) : v.toFixed(Math.abs(v) < 0.1 ? 3 : 2))} />
+                  <YAxis tick={{ fontSize: 10, fill: '#605D5D' }} stroke="#D7D3D3" width={44} tickFormatter={(v: number) => (Math.abs(v) >= 1000 ? v.toFixed(0) : v.toFixed(Math.abs(v) < 0.1 ? 3 : 2))} />
                   <Tooltip
                     content={({ active, payload, label }) => {
                       if (!active || !payload || payload.length === 0) return null;
                       return (
-                        <div className="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs shadow-xl space-y-0.5">
-                          <p className="text-gray-400">{variableMeta[variable].label} = {formatX(Number(label))}</p>
+                        <div className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs shadow-xl space-y-0.5">
+                          <p className="text-slate-400">{variableMeta[variable].label} = {formatX(Number(label))}</p>
                           {payload.map((p) => (
                             <p key={p.dataKey} style={{ color: p.stroke as string }}>
                               {p.name}: {(p.value as number).toFixed(4)}
@@ -210,14 +210,14 @@ const GreeksGrid: React.FC<{ variant?: 'full' | 'compact' }> = ({ variant = 'ful
                       );
                     }}
                   />
-                  <ReferenceDot x={markerRow.x} y={markerRow[tile.series[0].dataKey]} r={4} fill="#F8FAFC" stroke="#111827" strokeWidth={1.5} ifOverflow="visible" />
+                  <ReferenceDot x={markerRow.x} y={markerRow[tile.series[0].dataKey]} r={4} fill="#F3F2F2" stroke="#201E1D" strokeWidth={1.5} ifOverflow="visible" />
                   {tile.series.map((s) => (
                     <Line key={s.dataKey} dataKey={s.dataKey} name={s.name} stroke={s.color} strokeWidth={2} dot={false} isAnimationActive={false} />
                   ))}
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            {variant === 'full' && <p className="text-xs text-gray-400 leading-5 mt-3">{tile.caption}</p>}
+            {variant === 'full' && <p className="text-xs text-slate-400 leading-5 mt-3">{tile.caption}</p>}
           </div>
         ))}
       </div>

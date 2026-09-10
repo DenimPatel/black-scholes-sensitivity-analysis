@@ -1,0 +1,288 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Black-Scholes: An Interactive Guide — site stylesheet
+   Design language: "Broadsheet" — newsprint set for the web. Near-black
+   serif on paper white, with cyan / magenta used sparingly as spot color.
+   Hierarchy comes from type scale and whitespace, not boxes or rules.
+   Shared with the companion site github.com/DenimPatel/transformer-inference-roofline-explorer.
+   ========================================================================== */
+
+@theme {
+  --font-sans: "Source Serif 4", Georgia, ui-serif, system-ui, serif;
+  --font-serif: "Source Serif 4", Georgia, ui-serif, serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* — ink & paper — */
+  --color-ink: #201e1d;
+  --color-paper: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+
+  /* — spot color: cyan (primary) / magenta (secondary) — */
+  --color-accent: #0088b0;
+  --color-accent-soft: #62c5ee;
+  --color-accent-2: #d6006c;
+
+  --color-accent-100: #e9f8ff;
+  --color-accent-200: #cbeeff;
+  --color-accent-300: #99e0ff;
+  --color-accent-400: #62c5ee;
+  --color-accent-500: #38a6cf;
+  --color-accent-600: #1186ac;
+  --color-accent-700: #006786;
+  --color-accent-800: #004961;
+  --color-accent-900: #0a303e;
+
+  --color-accent-2-100: #fff1f4;
+  --color-accent-2-200: #ffdee6;
+  --color-accent-2-300: #ffc0d0;
+  --color-accent-2-400: #ff90b1;
+  --color-accent-2-500: #ff458e;
+  --color-accent-2-600: #d82071;
+  --color-accent-2-700: #aa0b56;
+  --color-accent-2-800: #790e3d;
+  --color-accent-2-900: #4b1528;
+
+  /* — the "slate" ramp is remapped to newsprint warm greys, so every
+       text-slate-* / bg-slate-* / border-slate-* utility in the app picks up
+       the broadsheet palette without touching a single component. — */
+  --color-slate-50: #faf8f8;
+  --color-slate-100: #f8f4f4;
+  --color-slate-200: #eae7e7;
+  --color-slate-300: #d7d3d3;
+  --color-slate-400: #928e8e;
+  --color-slate-500: #7d7979;
+  --color-slate-600: #605d5d;
+  --color-slate-700: #444141;
+  --color-slate-800: #2d2b2b;
+  --color-slate-900: #201e1d;
+  --color-slate-950: #151313;
+
+  /* — semantic hues, desaturated to newsprint level — */
+  --color-emerald-50: #eef6f2;
+  --color-emerald-100: #d8ece4;
+  --color-emerald-200: #b0d9c9;
+  --color-emerald-300: #7cbea6;
+  --color-emerald-400: #4f9f83;
+  --color-emerald-500: #2f8365;
+  --color-emerald-600: #1f6b51;
+  --color-emerald-700: #17543f;
+  --color-emerald-800: #133f30;
+  --color-emerald-900: #102b22;
+
+  --color-rose-50: #fff1f4;
+  --color-rose-100: #ffdee6;
+  --color-rose-200: #ffc0d0;
+  --color-rose-300: #ff90b1;
+  --color-rose-400: #ff458e;
+  --color-rose-500: #d82071;
+  --color-rose-600: #c00a60;
+  --color-rose-700: #aa0b56;
+  --color-rose-800: #790e3d;
+  --color-rose-900: #4b1528;
+
+  --color-amber-50: #fbf5e8;
+  --color-amber-100: #f6e9cb;
+  --color-amber-200: #ecd398;
+  --color-amber-300: #dcb45f;
+  --color-amber-400: #c8963a;
+  --color-amber-500: #ab7c22;
+  --color-amber-600: #8d6417;
+  --color-amber-700: #6f4e14;
+  --color-amber-800: #543b12;
+  --color-amber-900: #3a2a10;
+
+  --color-violet-50: #f6f1f8;
+  --color-violet-100: #ebdff0;
+  --color-violet-200: #d7bfe1;
+  --color-violet-300: #b892c9;
+  --color-violet-400: #9767ac;
+  --color-violet-500: #7b4b90;
+  --color-violet-600: #653a77;
+  --color-violet-700: #512f5f;
+  --color-violet-800: #3d2448;
+  --color-violet-900: #2a1a32;
+
+  --color-sky-400: #62c5ee;
+  --color-sky-500: #38a6cf;
+  --color-sky-600: #1186ac;
+  --color-blue-400: #62c5ee;
+  --color-blue-500: #38a6cf;
+  --color-blue-600: #1186ac;
+
+  /* — corners: newsprint is set with rules, not pills — */
+  --radius-xs: 1px;
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 3px;
+  --radius-2xl: 4px;
+  --radius-3xl: 4px;
+  --radius-4xl: 4px;
+
+  --shadow-sm-paper: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+  --shadow-md-paper: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+  --shadow-lg-paper: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-divider);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-ink);
+    background: var(--color-paper);
+    text-wrap: pretty;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 0;
+  }
+}
+
+@layer components {
+  .glass {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid var(--color-divider);
+  }
+  .glass-strong {
+    background: var(--color-paper);
+    border-color: var(--color-divider);
+  }
+  .glass-card {
+    background: #ffffff;
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm-paper);
+  }
+
+  .glass-card-hover {
+    transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+  }
+  .glass-card-hover:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
+    box-shadow: var(--shadow-md-paper);
+  }
+
+  .glass-chip {
+    background: var(--color-surface);
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+  }
+
+  .glass-input {
+    background: #ffffff;
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+  }
+  .glass-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 25%, transparent);
+  }
+
+  .glass-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 0;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-400));
+    outline: none;
+    cursor: pointer;
+  }
+  .glass-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: var(--color-paper);
+    border: 2px solid var(--color-accent-700);
+    transition: transform 0.15s var(--ease-out);
+  }
+  .glass-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .glass-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: var(--color-paper);
+    border: 2px solid var(--color-accent-700);
+  }
+
+  /* — nav rail — */
+  .nav-brand {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  /* — buttons — */
+  .btn-ghost {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    font-family: var(--font-serif); font-weight: 600; font-size: 14px;
+    color: var(--color-accent); background: transparent; border: 0;
+    padding: 6px 8px; border-radius: var(--radius-md); cursor: pointer;
+  }
+  .btn-ghost:hover {
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    color: var(--color-accent-700);
+  }
+
+  /* ---- Scrollbar ---- */
+  .custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-ink) 25%, transparent);
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--color-ink) 40%, transparent); }
+
+  /* ---- Recharts theming nudges ---- */
+  .recharts-cartesian-axis-tick-value { font-size: 11px; fill: #605d5d; }
+  .recharts-cartesian-axis-label { fill: #605d5d; }
+  .recharts-legend-item-text { color: #605d5d !important; }
+  .recharts-cartesian-grid line { stroke: color-mix(in srgb, #201e1d 10%, transparent); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

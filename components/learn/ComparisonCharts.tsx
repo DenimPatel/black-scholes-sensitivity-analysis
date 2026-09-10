@@ -14,7 +14,7 @@ import { useModelParams } from '../../state/ParamsContext';
 import { FigureCard, ToggleGroup } from './Prose';
 
 const STEPS = 80;
-const PALETTE = ['#2DD4BF', '#38BDF8', '#A78BFA', '#FBBF24', '#F472B6'];
+const PALETTE = ['#006786', '#62C5EE', '#7B4B90', '#C8963A', '#D6006C'];
 
 type Mode = 'strike' | 'maturity' | 'volatility';
 
@@ -96,24 +96,24 @@ const ComparisonCharts: React.FC = () => {
       <div className="h-80 w-full">
         <ResponsiveContainer>
           <LineChart data={data} margin={{ top: 10, right: 20, bottom: 20, left: 10 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#37415188" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#44414188" />
             <XAxis
               dataKey="s"
               type="number"
               domain={[min, max]}
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => `$${v.toFixed(0)}`}
-              stroke="#4B5563"
-              label={{ value: 'Stock price S', position: 'insideBottom', dy: 8, fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: 'Stock price S', position: 'insideBottom', dy: 8, fill: '#605D5D' }}
             />
             <YAxis
-              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              tick={{ fontSize: 12, fill: '#605D5D' }}
               tickFormatter={(v) => `$${v.toFixed(0)}`}
-              stroke="#4B5563"
-              label={{ value: 'Call price ($)', angle: -90, position: 'insideLeft', fill: '#9CA3AF' }}
+              stroke="#D7D3D3"
+              label={{ value: 'Call price ($)', angle: -90, position: 'insideLeft', fill: '#605D5D' }}
             />
             <Tooltip
-              contentStyle={{ backgroundColor: '#111827', border: '1px solid #374151', borderRadius: '0.5rem' }}
+              contentStyle={{ backgroundColor: '#201E1D', border: '1px solid #444141', borderRadius: '0.5rem' }}
               labelFormatter={(label) => `S = $${Number(label).toFixed(2)}`}
               formatter={(value: number, name: string) => [`$${value.toFixed(2)}`, name]}
             />
