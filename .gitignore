@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Local Piper TTS voice models (re-downloadable via npm run generate-audio setup)
+en_US-*.onnx
+en_US-*.onnx.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
