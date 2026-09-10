@@ -34,4 +34,26 @@ export interface ChartData {
   rho: number;
 }
 
+
+export type OptionType = 'call' | 'put';
+export type PositionType = 'long' | 'short';
+
+export interface MonteCarloResult {
+  estimate: number;
+  stdErr: number;
+  lower: number;
+  upper: number;
+  paths: number;
+  seed: number;
+  terminalPrices: number[];
+}
+
+export interface MonteCarloConvergencePoint {
+  paths: number;
+  estimate: number;
+  stdErr: number;
+  lower: number;
+  upper: number;
+}
+
 export type SensitivityVariable = 'stockPrice' | 'strikePrice' | 'timeToMaturity' | 'volatility' | 'riskFreeRate';

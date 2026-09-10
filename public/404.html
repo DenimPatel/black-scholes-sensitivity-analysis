@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black-Scholes · Interactive Guide</title>
+</head>
+<body>
+<noscript>
+  <p>This site requires JavaScript. Please enable it and reload.</p>
+</noscript>
+<script>
+  // GitHub Pages SPA fallback.
+  // GitHub Pages has no server-side redirect for unknown paths, so a direct
+  // deep link (e.g. /black-scholes-sensitivity-analysis/learn/greeks) resolves
+  // to this file. We stash the requested route in sessionStorage, load the app
+  // entry, and index.tsx restores the route before the router mounts.
+  (function () {
+    var basePath = '/black-scholes-sensitivity-analysis/';
+    var requested = window.location.pathname;
+    try {
+      if (sessionStorage && requested.indexOf(basePath) === 0 &&
+          requested !== basePath && requested !== basePath.slice(0, -1)) {
+        sessionStorage.setItem('bs-spa-fallback-route', requested + window.location.search + window.location.hash);
+      }
+    } catch (e) {
+      // sessionStorage unavailable (private mode): fall back without the route.
+    }
+    window.location.replace(basePath);
+  })();
+</script>
+</body>
+</html>
